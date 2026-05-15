@@ -1,0 +1,68 @@
+#pragma once
+extern const int PLAYER_IMG_HEIGHT;
+extern const int PLAYER_IMG_WIDTH;
+extern const int WINDOW_WIDTH;
+extern const int WINDOW_HEIGHT;
+extern const int PLAYER_SHADOW_HEIGHT;
+extern const int PLAYER_SHADOW_WIDTH;
+extern const int ENEMY_IMG_HEIGHT;
+extern const int ENEMY_IMG_WIDTH;
+extern const int BOOM_IMG_WIDTH;
+extern const int BOOM_IMG_HEIGHT;
+extern const int ENEMY_SHADOW_HEIGHT;
+extern const int ENEMY_SHADOW_WIDTH;
+extern const int AVATAR_IMG_HEIGHT;
+extern const int AVATAR_IMG_WIDTH;
+extern const int ORANGE_IMG_HEIGHT;
+extern const int ORANGE_IMG_WIDTH;
+extern const int SCORE_SHOW_MARGIN_TOP;
+extern const int SCORE_SHOW_MARGIN_RIGHT;
+extern const int TOOL_ICO_WIDTH;
+extern const int TOOL_ICO_HEIGHT;
+extern const int EFFECT_IMG_HEIGHT;
+extern const int EFFECT_IMG_WIDTH;
+extern const int RES_BOOM_START;
+extern const int RES_ENEMY_LEFT_START;
+extern const int RES_ENEMY_RIGHT_START;
+extern const int RES_PLAYER_STATIC_START;
+extern const int RES_PLAYER_FRONT_START;
+extern const int RES_PLAYER_RIGHT_START;
+extern const int RES_PLAYER_LEFT_START;
+extern const int RES_PLAYER_BEHIND_START;
+extern const int RES_PLAYER_CIRCLE_START;
+extern const int RES_SHADOW_ID;
+extern const int RES_PLAYER_SHADOW_ID;
+extern const int RES_BACKGROUND_ID;
+extern const int RES_ICO_BOOM_ID;
+extern const int RES_ICO_BOOMBK_ID;
+extern const int RES_ICO_ORANGE_ID;
+extern const int RES_ICO_ORANGEBK_ID;
+extern const int RES_BUBBLE_GREEN_ID;
+extern const int RES_BUBBLE_BLUE_ID;
+extern const int RES_BUBBLE_PURPLE_ID;
+extern const int RES_BUBBLE_SEVEN_ID;
+extern const int RES_BUBBLE_BOOM_ID;
+extern const int RES_BUBBLE_HP_ID;
+extern const int RES_BUBBLE_ICECREAM_ID;
+extern const int RES_BUBBLE_BOOST_ID;
+extern const int RES_BUBBLE_PLUS_ID;
+extern const int RES_BUBBLE_FAST_ID;
+extern const int RES_EFFECT_NMBORDER_ID;
+extern const int RES_EFFECT_IFBORDER_ID;
+extern const int RES_EFFECT_TIMEBAR_ID;
+extern const int RES_EFFECT_ICO_BOOMNB_ID;
+extern const int RES_EFFECT_ICO_BOOMRB_ID;
+extern const int RES_EFFECT_ICO_ORANGEB_ID;
+extern const int RES_EFFECT_ICO_ICEB_ID;
+extern const int RES_EFFECT_GREENBK_ID;
+extern const int RES_EFFECT_BLUEBK_ID;
+extern const int RES_EFFECT_PURPLEBK_ID;
+extern const int RES_EFFECT_SEVENBK_ID;
+
+enum bulletType {
+    normal, rotated, boom
+};
+
+enum toolType {
+    boomNumBoost = 1, boomCapBoost, boomRecBoost, hpNumBoost, hpCapBoost, speedNumBoost
+};

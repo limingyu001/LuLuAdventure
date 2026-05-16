@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
-// 供 菲菲噜大冒险.rc 使用
+// 供 噜噜大冒险.rc 使用
 //
 #define IDB_PNG1                        101
 #define IDB_PNG2                        102
@@ -217,12 +217,20 @@
 #define IDB_PNG213                      320
 #define IDB_PNG214                      321
 #define IDI_ICON1                       325
+#define IDB_PNG215                      326
+#define IDB_PNG216                      327
+#define IDB_PNG217                      328
+#define IDB_PNG218                      329
+#define IDB_PNG219                      330
+#define IDB_PNG220                      331
+#define IDB_PNG221                      332
+#define IDB_PNG222                      333
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        326
+#define _APS_NEXT_RESOURCE_VALUE        334
 #define _APS_NEXT_COMMAND_VALUE         40003
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101

@@ -50,4 +50,675 @@
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\luluIco\luluHeadBeAttacted.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom21.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom22.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom23.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom24.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom25.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom26.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom27.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom28.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom29.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom30.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom31.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom32.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom33.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom34.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom35.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom36.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom37.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom38.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom39.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom40.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom41.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\boom\boom42.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_21.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_22.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_23.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyLeft\ani_enemy_left_24.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_21.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_22.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_23.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyRight\ani_enemy_right_24.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluFront\ani_lulu_front_20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluGo\ani_lulu_go_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluRight\ani_lulu_right_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluLeft\ani_lulu_left_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluBehind\ani_lulu_behind_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluCircle\luluCircle20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\shadow.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\shadow_player.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\background.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\boom.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\boombk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\orange.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\orangebk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\greenbubble.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\bluebubble.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\purplebubble.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\sevenbubble.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_boom.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_hp.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_icecream.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_boost.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_plus.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\bubble\ico_fast.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\border.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\ifborder.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\timefill.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\ico_boomnb_effect.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\ico_boomrb_effect.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\ico_orange_effect.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\ico_icecream_effect.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\greenbk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\bluebk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\purplebk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\luluIco\effect\sevenbk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\ico.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\menu_bk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_start_default.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_start_hover.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_start_active.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_exit_default.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_exit_hover.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_exit_active.png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

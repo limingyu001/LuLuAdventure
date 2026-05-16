@@ -21,6 +21,7 @@ extern const int TOOL_ICO_WIDTH;
 extern const int TOOL_ICO_HEIGHT;
 extern const int EFFECT_IMG_HEIGHT;
 extern const int EFFECT_IMG_WIDTH;
+extern const int BOOM_SIZE;
 extern const int RES_BOOM_START;
 extern const int RES_ENEMY_LEFT_START;
 extern const int RES_ENEMY_RIGHT_START;
@@ -58,6 +59,14 @@ extern const int RES_EFFECT_GREENBK_ID;
 extern const int RES_EFFECT_BLUEBK_ID;
 extern const int RES_EFFECT_PURPLEBK_ID;
 extern const int RES_EFFECT_SEVENBK_ID;
+extern const int RES_LULUBEATTACTED_ID;
+extern const int RES_MENUBK_ID;
+extern const int RES_BUTTON_START_ID;
+extern const int RES_BUTTON_START_HOVER_ID;
+extern const int RES_BUTTON_START_ACTIVE_ID;
+extern const int RES_BUTTON_EXIT_ID;
+extern const int RES_BUTTON_EXIT_HOVER_ID;
+extern const int RES_BUTTON_EXIT_ACTIVE_ID;
 
 enum bulletType {
     normal, rotated, boom

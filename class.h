@@ -17,7 +17,7 @@ public:
 };
 
 
-//玩家属性类
+//玩家属性结构体
 struct playerConfig {
 	int HP = 5;
 	int maxHP = 5;
@@ -30,6 +30,7 @@ struct playerConfig {
 	long BoomRecoverTick = 0;
 };
 
+//图集类
 class Atlas {
 public:
 	int animation_num;
@@ -172,4 +173,35 @@ public:
 	toolType type;
 public:
 	effect(toolType type,int level);
+};
+
+//按钮类
+class Button {
+public:
+	int x;
+	int y;
+	int width;
+	int height;
+	bool isHover = false;
+	bool isActive = false;
+	IMAGE img;
+	IMAGE hoverImg;
+	IMAGE activeImg;
+	void* onClickFunc;
+public:
+	//构造和析构函数
+	Button(int x, int y, int width, int height, wstring imgPath, wstring hoverImgPath, wstring activeImgPath, void* onClickFunc);
+	Button(int x, int y, int width, int height, int imgID,int hoverImgID, int activeImgID, void* onClickFunc);
+	~Button();
+	void draw();
+};
+
+//注册表工具类
+class Registryer {
+public:
+	Registryer();
+	bool setInt(string key, int value);
+	int readInt(string key,int defaultValue);
+private:
+	string KeyPath;
 };

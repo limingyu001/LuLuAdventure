@@ -28,7 +28,7 @@ IMAGE effect_greenbk;
 IMAGE effect_bluebk;
 IMAGE effect_purplebk;
 IMAGE effect_sevenbk;
-
+double len(int x1, int y1, int x2, int y2);
 
 specialTable::specialTable(int num, int* rtable, int* gtable, int* btable) {
 	this->num = num;
@@ -62,9 +62,6 @@ Atlas::Atlas(int num, wstring pathV, int w, int h) {
 		frames.push_back(t);
 	}
 }
-
-
-
 
 //动画类
 Animation::Animation(Atlas* atlas,int t){
@@ -224,6 +221,13 @@ void Player::drawShadow() {
 }
 void Player::putBoom() {
 	if (playerState.BoomNum <= 0) { return; }
+	//遍历boom_list，判断是否有炸弹在爆炸过程中，如果有则不能放置炸弹
+	for (auto& boom : boom_list) {
+		float length = len(boom->x, boom->y, player.x, player.y);
+		if (length < BOOM_SIZE) {
+			return;
+		}
+	}
 	playerState.BoomNum--;
 	boom_list.push_back(createBoom());
 }
@@ -361,4 +365,125 @@ effect::effect(toolType type, int level) {
 	timebar = effect_timebar;
 	startTimeStamp = GetTickCount();
 	changeNum = list2[level];
+}
+
+//按钮类
+Button::Button(int x, int y, int width, int height, wstring imgPath, wstring hoverImgPath, wstring activeImgPath, void* onClickFunc){
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+	IMAGE img, hoverImg, activeImg;
+	loadimage(&img, imgPath.c_str(), width, height);
+	loadimage(&hoverImg, hoverImgPath.c_str(), width, height);
+	loadimage(&activeImg, activeImgPath.c_str(), width, height);
+	this->img = img;
+	this->hoverImg = hoverImg;
+	this->activeImg = activeImg;
+}
+
+Button::Button(int x, int y, int width, int height, int imgID, int hoverImgID, int activeImgID, void* onClickFunc) {
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+	IMAGE img, hoverImg, activeImg;
+	loadimage(&img, _T("PNG"), MAKEINTRESOURCE(imgID), width, height);
+	loadimage(&hoverImg, _T("PNG"), MAKEINTRESOURCE(hoverImgID), width, height);
+	loadimage(&activeImg, _T("PNG"), MAKEINTRESOURCE(activeImgID), width, height);
+	this->img = img;
+	this->hoverImg = hoverImg;
+	this->activeImg = activeImg;
+}
+Button::~Button() {
+	//析构函数，释放图片资源
+	img.~IMAGE();
+	hoverImg.~IMAGE();
+	activeImg.~IMAGE();
+}
+void Button::draw() {
+	if (isActive) {
+		putimageAlpha(x, y, &activeImg);
+	}
+	else if (isHover) {
+		putimageAlpha(x, y, &hoverImg);
+	}
+	else {
+		putimageAlpha(x, y, &img);
+	}
+}
+
+Registryer::Registryer() {
+	KeyPath = "Software\\LuLuAdventure";
+}
+//向注册表写入int
+bool Registryer::setInt(string key, int value) {
+	HKEY hKey;
+	DWORD disposition;
+	// 创建或打开注册表键
+	LONG result = RegCreateKeyExA(
+		HKEY_CURRENT_USER,
+		KeyPath.c_str(),
+		0,
+		NULL,
+		REG_OPTION_NON_VOLATILE,
+		KEY_ALL_ACCESS,
+		NULL,
+		&hKey,
+		&disposition
+	);
+
+	if (result != ERROR_SUCCESS) {
+		return false;
+	}
+
+	// 写入整数值
+	result = RegSetValueExA(
+		hKey,
+		key.c_str(),
+		0,
+		REG_DWORD,
+		(const BYTE*)&value,
+		sizeof(value)
+	);
+	RegCloseKey(hKey);
+	return result == ERROR_SUCCESS;
+}
+
+// 从注册表读取整数
+int Registryer::readInt(string valueName, int defaultValue = 0) {
+	HKEY hKey;
+	DWORD value;
+	DWORD valueSize = sizeof(value);
+	DWORD type = REG_DWORD;
+	// 打开注册表键
+	LONG result = RegOpenKeyExA(
+		HKEY_CURRENT_USER,
+		KeyPath.c_str(),
+		0,
+		KEY_READ,
+		&hKey
+	);
+
+	if (result != ERROR_SUCCESS) {
+		return defaultValue;
+	}
+
+	// 读取整数值
+	result = RegQueryValueExA(
+		hKey,
+		valueName.c_str(),
+		NULL,
+		&type,
+		(LPBYTE)&value,
+		&valueSize
+	);
+
+	RegCloseKey(hKey);
+
+	if (result != ERROR_SUCCESS) {
+		return defaultValue;
+	}
+
+	return (int)value;
 }

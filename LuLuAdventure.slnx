@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="LuLuAdventure.vcxproj" />
+  <Project Path="LuLuAdventure.vcxproj" Id="77f6a8f7-62d0-421b-8321-1042f5b7e399" />
 </Solution>

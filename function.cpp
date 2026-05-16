@@ -33,11 +33,14 @@ extern IMAGE effect_greenbk;
 extern IMAGE effect_bluebk;
 extern IMAGE effect_purplebk;
 extern IMAGE effect_sevenbk;
+extern IMAGE* startImg;
+
+
+
 int score = 0;
 int toolsSummonDelay = 0;
 int killNumCache = 0;
 void init() {
-
 	initgraph(1280, 720);
 	loadimage(orange, _T("PNG"),MAKEINTRESOURCE(RES_ICO_ORANGE_ID), 32, 32);
 	loadimage(orangeBkImg, _T("PNG"),MAKEINTRESOURCE(RES_ICO_ORANGEBK_ID), 32, 32);
@@ -64,6 +67,10 @@ void init() {
 	loadimage(&effect_ico_boomrb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_BOOMRB_ID));
 	loadimage(&effect_ico_orangeb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ORANGEB_ID));
 	loadimage(&effect_ico_iceb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ICEB_ID));
+	loadimage(startImg, _T("PNG"), MAKEINTRESOURCE(RES_MENUBK_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
+
+
+
 };
 
 #pragma comment(lib,"Winmm.lib")
@@ -78,8 +85,7 @@ void putimageAlpha(int x, int y, IMAGE* img) {
 	int h = img->getheight();
 	AlphaBlend(GetImageHDC(NULL), x, y, w, h, GetImageHDC(img), 0, 0, w, h, { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
 }
-void putimageAlpha(int dstX, int dstY, int dstW, int dstH,
-	IMAGE* src, int srcX, int srcY) {
+void putimageAlpha(int dstX, int dstY, int dstW, int dstH,IMAGE* src, int srcX, int srcY) {
 	AlphaBlend(GetImageHDC(NULL), dstX, dstY, dstW, dstH,
 		GetImageHDC(src), srcX, srcY, dstW, dstH,
 		{ AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
@@ -94,6 +100,59 @@ void summonEnemy() {
 		enemy_list.push_back(t);
 		count = 0;
 	}
+}
+
+
+Button startButton(950, 300, 280, 120, RES_BUTTON_START_ID, RES_BUTTON_START_HOVER_ID, RES_BUTTON_START_ACTIVE_ID, nullptr);
+Button exitButton(950, 450, 280, 120, RES_BUTTON_EXIT_ID, RES_BUTTON_EXIT_HOVER_ID, RES_BUTTON_EXIT_ACTIVE_ID, nullptr);
+vector<Button*> buttonList = { &startButton, &exitButton };
+
+void calcMenu() {
+	while (peekmessage(&msg)) {
+		// 获取鼠标位置
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			for (Button* button : buttonList) {
+				// 判断鼠标是否在按钮上
+				if (mx >= button->x && mx <= button->x + button->width &&my >= button->y && my <= button->y + button->height) {
+					button->isHover = true;
+					// 处理点击逻辑
+					if (msg.message == WM_LBUTTONDOWN) {
+						button->isActive = true;
+					} else if (msg.message == WM_LBUTTONUP) {
+						if (button->isActive) {
+							if (button == &startButton) {
+								extern bool FLAG1;
+								FLAG1 = false;
+							} else if (button == &exitButton) {
+								exit(0);
+							}
+						}
+						button->isActive = false;
+					}
+				} else {
+					button->isHover = false;
+					button->isActive = false;
+				}
+			}
+		}
+	}
+}
+
+void drawMenu() {
+	BeginBatchDraw();
+	cleardevice();
+	putimageAlpha(0, 0, startImg);
+	//遍历按钮数组
+	for (Button* button : buttonList) {
+		button->draw();
+	}
+
+	//settextcolor(RGB(255, 255, 255));
+	//settextstyle(50, 0, _T("Arial"));
+	//outtextxy(200, 200, _T("Press Enter to Start"));
+	EndBatchDraw();
 }
 
 
@@ -183,7 +242,10 @@ void drawBoom(DWORD time) {
 
 void drawHead(int t) {
 	//特殊头像显示
-	avatar_animation->behind_animation->play(10,10,t,player.specialShowTick,L"img/luluIco/luluHeadBeAttacted.png");
+	avatar_animation->behind_animation->play(10,10,t,player.specialShowTick,RES_LULUBEATTACTED_ID);
+
+
+
 	if (player.specialShowTick) { player.specialShowTick--; }
 	for (int i = 0; i < player.playerState.maxHP; i++) {
 		putimageAlpha(30 + AVATAR_IMG_WIDTH + (i * (ORANGE_IMG_WIDTH + 10)), 10, orangeBkImg);
@@ -442,10 +504,6 @@ void addEffect(gameTool* t) {
 	effectList.push_back(after);
 }
 
-
-
-
-
 void toolCalc() {
 	//遍历泡泡链表
 	for (auto it = tools_list.begin(); it != tools_list.end();) {
@@ -472,19 +530,21 @@ void toolCalc() {
 		
 }
 
+void beyondControl() {
+	if (player.playerState.HP < 0) { player.playerState.HP = 0; }
+	if (player.playerState.HP > player.playerState.maxHP) { player.playerState.HP = player.playerState.maxHP; }
+}
+
 void calc() {
 	summonEnemy();
 	summonTool();
 	toolCalc();
-	
 	boomBoom();
 	enemyMove();
 	boomRecover();
 	effectCalc();
-
-
-
-
+	//游戏数值越界控制
+	beyondControl();
 	int player_dir_x = player.isRightMove -player.isLeftMove;
 	int player_dir_y = player.isDownMove - player.isUpMove;
 	double xxx = player_dir_x / sqrt(player_dir_x * player_dir_x + player_dir_y * player_dir_y);
@@ -502,4 +562,40 @@ void calc() {
 	
 };
 
+void resetGame() {
+	//重置玩家状态
+	player.playerState.HP = 5;
+	player.playerState.maxHP = 5;
+	player.playerState.speed = 5;
+	player.playerState.BoomNum = 5;
+	player.playerState.BoomMaxNum = 5;
+	player.playerState.BoomRecoverSpeed = 4;
+	player.playerState.BoomRecoverProgress = 0;
+	player.playerState.BoomRecoverProgressMax = 50;
+	player.playerState.BoomRecoverTick = 0;
+	//清除敌人
+	for (Enemy* enemy : enemy_list) {
+		delete enemy;
+	}
+	enemy_list.clear();
+	//清除炸弹
+	for (Bullet* boom : boom_list) {
+		delete boom;
+	}
+	boom_list.clear();
+	//清除道具
+	for (gameTool* tool : tools_list) {
+		delete tool;
+	}
+	tools_list.clear();
+	//清除效果
+	for (effect* t : effectList) {
+		delete t;
+	}
+	effectList.clear();
+	score = 0;
+	//重置玩家位置
+	player.x = 300;
+	player.y = 300;
 
+}

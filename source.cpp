@@ -10,6 +10,7 @@ IMAGE* orange = new IMAGE;
 IMAGE* orangeBkImg = new IMAGE;
 IMAGE* boomImg = new IMAGE;
 IMAGE* boomBkImg = new IMAGE;
+IMAGE* startImg = new IMAGE;
 Atlas* player_static_atlas = new Atlas(20, RES_PLAYER_STATIC_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
 Atlas* player_front_atlas = new Atlas(12, RES_PLAYER_FRONT_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
 Atlas* player_right_atlas = new Atlas(16, RES_PLAYER_RIGHT_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
@@ -38,12 +39,33 @@ int bt[5] = { 255,68,255,179,0 };
 specialTable* sp = new specialTable(4, rt, gt, bt);
 Player player(5, 5, player_animation, sp);
 
+bool FLAG1 = true;
 int main() {
 	init();
+	
+	Registryer Reg;
+	int temp = Reg.readInt("test",0);
+	cout << "read:" << temp << endl;
+	Reg.setInt("test", 666);
 	while (TRUE) {
-
 		srand(static_cast<unsigned int>(time(0)));
 		//开始界面
+		while (FLAG1) {
+			if (GetAsyncKeyState(VK_RETURN)) { FLAG1 = false; }
+			calcMenu();
+			drawMenu();
+			//绘制开始界面
+			//cleardevice();
+			//putimageAlpha(0, 0, startImg);
+			//settextcolor(RGB(255, 255, 255));
+			//settextstyle(50, 0, _T("Arial"));
+			//outtextxy(200, 200, _T("Press Enter to Start"));
+			Sleep(100);
+		}
+	
+
+
+		resetGame();
 		while (player.playerState.HP) {
 			DWORD startTick = GetTickCount();//获取开始时间戳
 			static int gameTick = 0;

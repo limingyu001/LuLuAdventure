@@ -34,9 +34,9 @@ extern IMAGE effect_bluebk;
 extern IMAGE effect_purplebk;
 extern IMAGE effect_sevenbk;
 extern IMAGE* startImg;
+extern IMAGE* endImg;
 
-
-
+int history_max_score = 0;
 int score = 0;
 int toolsSummonDelay = 0;
 int killNumCache = 0;
@@ -68,6 +68,7 @@ void init() {
 	loadimage(&effect_ico_orangeb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ORANGEB_ID));
 	loadimage(&effect_ico_iceb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ICEB_ID));
 	loadimage(startImg, _T("PNG"), MAKEINTRESOURCE(RES_MENUBK_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(endImg, _T("PNG"), MAKEINTRESOURCE(RES_END_IMG_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
 
 
 
@@ -140,7 +141,7 @@ void calcMenu() {
 	}
 }
 
-void drawMenu() {
+void drawMenu(int hss) {
 	BeginBatchDraw();
 	cleardevice();
 	putimageAlpha(0, 0, startImg);
@@ -148,10 +149,17 @@ void drawMenu() {
 	for (Button* button : buttonList) {
 		button->draw();
 	}
-
-	//settextcolor(RGB(255, 255, 255));
-	//settextstyle(50, 0, _T("Arial"));
-	//outtextxy(200, 200, _T("Press Enter to Start"));
+	//显示历史最高分
+	setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
+	COLORREF fontbk = RGB(255, 255, 0);
+	TCHAR scoreShow[128];
+	settextcolor(fontbk);
+	settextstyle(45, 22, _T("宋体"));
+	_stprintf_s(scoreShow, _T("历史最高分：%d"), hss);
+	outtextxy(WINDOW_WIDTH - HISTORY_SCORE_SHOW_MARGIN_RIGHT, HISTORY_SCORE_SHOW_MARGIN_TOP, scoreShow);
+	settextstyle(16, 8, _T("宋体"));
+	settextcolor(RGB(255, 255, 255));
+	outtextxy(1100, 200, _T("Version 1.1.0 (build2)"));
 	EndBatchDraw();
 }
 
@@ -598,4 +606,25 @@ void resetGame() {
 	player.x = 300;
 	player.y = 300;
 
+}
+
+void endPage() {
+	
+	
+	Sleep(100);
+	BeginBatchDraw();
+	cleardevice();
+	putimageAlpha(0, 0, endImg);
+	setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
+	COLORREF fontbk = RGB(255, 0, 0);
+	TCHAR scoreShow[128];
+	TCHAR scoreShowH[128];
+	settextcolor(fontbk);
+	settextstyle(100, 50, _T("宋体"));
+	_stprintf_s(scoreShow, _T("你的得分：%d"), score);
+	_stprintf_s(scoreShowH, _T("历史最高分：%d"), history_max_score);
+	outtextxy(200, 200, scoreShow);
+	outtextxy(200, 300, scoreShowH);
+
+	EndBatchDraw();
 }

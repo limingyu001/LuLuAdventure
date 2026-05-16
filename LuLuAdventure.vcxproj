@@ -131,7 +131,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Manifest>
@@ -149,10 +149,10 @@
     <ClInclude Include="function.h" />
     <ClInclude Include="globle.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="噜噜大冒险.rc" />
+    <ResourceCompile Include="噜噜大冒�?rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\background.png" />
@@ -252,6 +252,7 @@
     <Image Include="img\gui\btn_start_active.png" />
     <Image Include="img\gui\btn_start_default.png" />
     <Image Include="img\gui\btn_start_hover.png" />
+    <Image Include="img\gui\endpage.png" />
     <Image Include="img\gui\menu_bk.png" />
     <Image Include="img\ico.ico" />
     <Image Include="img\luluBehind\ani_lulu_behind_1.png" />

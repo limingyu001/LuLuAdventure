@@ -5,5 +5,6 @@ void draw(DWORD time);
 void calc();
 void resetGame();
 void putimageAlpha(int x, int y, IMAGE* img);
-void drawMenu();
+void drawMenu(int hss);
 void calcMenu();
+void endPage();

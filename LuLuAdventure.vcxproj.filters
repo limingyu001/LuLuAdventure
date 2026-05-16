@@ -41,14 +41,6 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="噜噜大冒险.rc">
-      <Filter>资源文件</Filter>
-    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\luluIco\luluHeadBeAttacted.png">
@@ -720,5 +712,13 @@
     <Image Include="img\gui\btn_exit_active.png">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="img\gui\endpage.png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="噜噜大冒险.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

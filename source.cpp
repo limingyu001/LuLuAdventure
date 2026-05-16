@@ -11,6 +11,7 @@ IMAGE* orangeBkImg = new IMAGE;
 IMAGE* boomImg = new IMAGE;
 IMAGE* boomBkImg = new IMAGE;
 IMAGE* startImg = new IMAGE;
+IMAGE* endImg = new IMAGE;
 Atlas* player_static_atlas = new Atlas(20, RES_PLAYER_STATIC_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
 Atlas* player_front_atlas = new Atlas(12, RES_PLAYER_FRONT_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
 Atlas* player_right_atlas = new Atlas(16, RES_PLAYER_RIGHT_START, PLAYER_IMG_WIDTH, PLAYER_IMG_HEIGHT);
@@ -40,20 +41,18 @@ specialTable* sp = new specialTable(4, rt, gt, bt);
 Player player(5, 5, player_animation, sp);
 
 bool FLAG1 = true;
-int main() {
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	init();
-	
 	Registryer Reg;
-	int temp = Reg.readInt("test",0);
-	cout << "read:" << temp << endl;
-	Reg.setInt("test", 666);
 	while (TRUE) {
 		srand(static_cast<unsigned int>(time(0)));
 		//开始界面
+		extern int history_max_score;
+		history_max_score = Reg.readInt("historyMaxScore", 0);
 		while (FLAG1) {
 			if (GetAsyncKeyState(VK_RETURN)) { FLAG1 = false; }
 			calcMenu();
-			drawMenu();
+			drawMenu(history_max_score);
 			//绘制开始界面
 			//cleardevice();
 			//putimageAlpha(0, 0, startImg);
@@ -63,8 +62,6 @@ int main() {
 			Sleep(100);
 		}
 	
-
-
 		resetGame();
 		while (player.playerState.HP) {
 			DWORD startTick = GetTickCount();//获取开始时间戳
@@ -76,7 +73,22 @@ int main() {
 			draw((1000 / 60) - endTick + startTick);
 			if (endTick - startTick < 1000 / 60) { Sleep((1000 / 60) - endTick + startTick); }//如果1/FPS秒内执行完成就休眠直到1/120秒结束
 		}
+		extern int score;
+		if(score > history_max_score) {
+			history_max_score = score;
+			Reg.setInt("historyMaxScore", history_max_score);
+		}
+		bool FLAG2 = true;
 		//结束界面
+		//按下R键重新开始，按下ESC键退出
+		while (FLAG2) {
+			if (GetAsyncKeyState('R')) { FLAG2 = false; }
+			if (GetAsyncKeyState(VK_ESCAPE)) { exit(0); }
+			endPage();
+			
+		}
+
+		
 	}
 	return 0;
 }

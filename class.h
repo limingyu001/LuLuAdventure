@@ -205,3 +205,31 @@ public:
 private:
 	string KeyPath;
 };
+
+
+
+class Game {
+public:
+	enum gameState {
+		menu=1, shop,selectLevel ,playing, gameover
+	};
+
+	gameState state = menu;
+	int currentLevel = 1;
+	int remainEnemyNum = 0;
+	int enemyHP = 0;
+	int enemySpeed = 0;
+	int allEnemyNum = 0;
+
+};
+
+class LevelBtn :public Button {
+public:
+	int id;
+	bool isLocked = true;
+public:
+	LevelBtn(int x, int y, int width, int height, int imgID, int hoverImgID, int activeImgID, int lockedImgID, void* onClickFunc,int id);
+	void draw();
+};
+
+struct levelInfor;

@@ -6,6 +6,7 @@
 #include "ctime"
 #include "resource.h"
 using namespace std;
+Game game;
 IMAGE* orange = new IMAGE;
 IMAGE* orangeBkImg = new IMAGE;
 IMAGE* boomImg = new IMAGE;
@@ -39,54 +40,47 @@ int gt[5] = { 255,228,157,82,255 };
 int bt[5] = { 255,68,255,179,0 };
 specialTable* sp = new specialTable(4, rt, gt, bt);
 Player player(5, 5, player_animation, sp);
-
+Registryer Reg;
 bool FLAG1 = true;
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+int main(){
 	init();
-	Registryer Reg;
 	while (TRUE) {
 		srand(static_cast<unsigned int>(time(0)));
 		//开始界面
 		extern int history_max_score;
-		history_max_score = Reg.readInt("historyMaxScore", 0);
-		while (FLAG1) {
-			if (GetAsyncKeyState(VK_RETURN)) { FLAG1 = false; }
-			calcMenu();
-			drawMenu(history_max_score);
-			//绘制开始界面
-			//cleardevice();
-			//putimageAlpha(0, 0, startImg);
-			//settextcolor(RGB(255, 255, 255));
-			//settextstyle(50, 0, _T("Arial"));
-			//outtextxy(200, 200, _T("Press Enter to Start"));
-			Sleep(100);
-		}
+		//history_max_score = Reg.readInt("historyMaxScore", 0);
+		//while (FLAG1) {
+		//	if (GetAsyncKeyState(VK_RETURN)) { FLAG1 = false; }
+		//	calcMenu();
+		//	drawMenu(history_max_score);
+		//	Sleep(100);
+		//}
 	
 		resetGame();
-		while (player.playerState.HP) {
+		while (TRUE) {
 			DWORD startTick = GetTickCount();//获取开始时间戳
 			static int gameTick = 0;
-			operate();
+			//operate();
 			calc();
 			gameTick++;
 			DWORD endTick = GetTickCount();//获取一轮的结束时间戳
 			draw((1000 / 60) - endTick + startTick);
 			if (endTick - startTick < 1000 / 60) { Sleep((1000 / 60) - endTick + startTick); }//如果1/FPS秒内执行完成就休眠直到1/120秒结束
 		}
-		extern int score;
-		if(score > history_max_score) {
-			history_max_score = score;
-			Reg.setInt("historyMaxScore", history_max_score);
-		}
-		bool FLAG2 = true;
+		//extern int score;
+		//if(score > history_max_score) {
+		//	history_max_score = score;
+		//	Reg.setInt("historyMaxScore", history_max_score);
+		//}
+		//bool FLAG2 = true;
 		//结束界面
 		//按下R键重新开始，按下ESC键退出
-		while (FLAG2) {
-			if (GetAsyncKeyState('R')) { FLAG2 = false; }
-			if (GetAsyncKeyState(VK_ESCAPE)) { exit(0); }
-			endPage();
-			
-		}
+		//while (FLAG2) {
+		//	if (GetAsyncKeyState('R')) { FLAG2 = false; }
+		//	if (GetAsyncKeyState(VK_ESCAPE)) { exit(0); }
+		//	endPage();
+		//	
+		//}
 
 		
 	}

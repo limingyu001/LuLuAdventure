@@ -3,7 +3,10 @@
 #include "globle.h"
 #include <graphics.h>
 #include<string>
-
+//0518主要任务:
+//1.完善startGame函数和敌人生成机制
+//2.完善玩家过关&失败机制
+//3.完善注册表数据存储
 using namespace std;
 extern Player player;
 extern Animations* enemy_animation;
@@ -35,12 +38,45 @@ extern IMAGE effect_purplebk;
 extern IMAGE effect_sevenbk;
 extern IMAGE* startImg;
 extern IMAGE* endImg;
+extern Game game;
 
 int history_max_score = 0;
 int score = 0;
 int toolsSummonDelay = 0;
 int killNumCache = 0;
+vector<LevelBtn*> levelBtns;
+extern levelInfor levelList[16];
+
+const int LEVEL_BUTTON_START_X = 50;
+const int LEVEL_BUTTON_START_Y = 200;
+const int LEVEL_BUTTON_WIDTH = 100;
+const int LEVEL_BUTTON_HEIGHT = 100;
+const int LEVEL_BUTTON_MARGIN = 20;
+const int RES_LEVEL_BUTTONS_START_ID = 337;
+const int RES_LEVEL_BUTTONS_HOVER_START_ID = 353;
+const int RES_LEVEL_BUTTONS_ACTIVE_START_ID = 369;
+const int RES_LEVEL_BUTTONS_LOCKED_ID = 385; // 假设没有锁定状态的图片，如果有需要可以添加
+const int LEVEL_NUM = 16;
+//图片加载以及初始化
 void init() {
+	//创建关卡选择按钮
+	int currentLevel = Reg.readInt("currentLevel", 1);
+	for (int i = 0; i < 16; i++) {
+		int x = LEVEL_BUTTON_START_X + (i%8) * (LEVEL_BUTTON_WIDTH + LEVEL_BUTTON_MARGIN);
+		int y = LEVEL_BUTTON_START_Y+(i/8) * (LEVEL_BUTTON_HEIGHT + LEVEL_BUTTON_MARGIN);
+		int w = LEVEL_BUTTON_WIDTH;
+		int h = LEVEL_BUTTON_HEIGHT;
+		int imgID = RES_LEVEL_BUTTONS_START_ID + i;
+		int hoverImgID = RES_LEVEL_BUTTONS_HOVER_START_ID + i;
+		int activeImgID = RES_LEVEL_BUTTONS_ACTIVE_START_ID + i;
+		int lockedImgID = RES_LEVEL_BUTTONS_LOCKED_ID;
+		LevelBtn* temp = new LevelBtn(x, y, h, w, imgID , hoverImgID , activeImgID,lockedImgID, nullptr,i+1);
+		temp->id = i;
+		if (i <= currentLevel - 1) { temp->isLocked = false; }
+		levelBtns.push_back(temp);
+	}
+
+
 	initgraph(1280, 720);
 	loadimage(orange, _T("PNG"),MAKEINTRESOURCE(RES_ICO_ORANGE_ID), 32, 32);
 	loadimage(orangeBkImg, _T("PNG"),MAKEINTRESOURCE(RES_ICO_ORANGEBK_ID), 32, 32);
@@ -108,37 +144,9 @@ Button startButton(950, 300, 280, 120, RES_BUTTON_START_ID, RES_BUTTON_START_HOV
 Button exitButton(950, 450, 280, 120, RES_BUTTON_EXIT_ID, RES_BUTTON_EXIT_HOVER_ID, RES_BUTTON_EXIT_ACTIVE_ID, nullptr);
 vector<Button*> buttonList = { &startButton, &exitButton };
 
-void calcMenu() {
-	while (peekmessage(&msg)) {
-		// 获取鼠标位置
-		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
-			int mx = msg.x;
-			int my = msg.y;
-			for (Button* button : buttonList) {
-				// 判断鼠标是否在按钮上
-				if (mx >= button->x && mx <= button->x + button->width &&my >= button->y && my <= button->y + button->height) {
-					button->isHover = true;
-					// 处理点击逻辑
-					if (msg.message == WM_LBUTTONDOWN) {
-						button->isActive = true;
-					} else if (msg.message == WM_LBUTTONUP) {
-						if (button->isActive) {
-							if (button == &startButton) {
-								extern bool FLAG1;
-								FLAG1 = false;
-							} else if (button == &exitButton) {
-								exit(0);
-							}
-						}
-						button->isActive = false;
-					}
-				} else {
-					button->isHover = false;
-					button->isActive = false;
-				}
-			}
-		}
-	}
+void startGame(int level) {
+	game.currentLevel = level;
+	game.state = Game::playing;
 }
 
 void drawMenu(int hss) {
@@ -163,7 +171,6 @@ void drawMenu(int hss) {
 	EndBatchDraw();
 }
 
-
 void drawEnemy(int time,int y) {
 	for (Enemy* enemy : enemy_list) {
 		if(y==-1&&enemy->y-player.y<=0){
@@ -187,7 +194,6 @@ void drawEnemy(int time,int y) {
 	}
 
 }
-
 
 void enemyMove(){
 	//敌人移动和受击状态和攻击玩家
@@ -299,14 +305,11 @@ void drawHead(int t) {
 
 	}
 
-
 void drawTools() {
 	for (gameTool* tool : tools_list) {
 		tool->draw();
 	}
 }
-
-
 
 vector<effect*> effectList;
 void drawEffect() {
@@ -331,7 +334,6 @@ void drawEffect() {
 		i++;
 	}
 }
-
 
 void effectCalc() {
 	int i = 0;
@@ -362,12 +364,9 @@ void effectCalc() {
 	}
 }
 
-
-void draw(DWORD time) {
-	BeginBatchDraw();
+void drawPlaying(DWORD time) {
 	IMAGE bk;
 	loadimage(&bk, _T("PNG"), MAKEINTRESOURCE(RES_BACKGROUND_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
-	cleardevice();
 	putimage(0, 0, &bk);
 	int t = time;
 	drawTools();
@@ -379,8 +378,17 @@ void draw(DWORD time) {
 	drawEnemy(t,1);
 	drawHead(t);
 	drawEffect();
-	EndBatchDraw();
 };
+
+void drawLevelSelect() {
+	IMAGE bk;
+	loadimage(&bk, _T("PNG"), MAKEINTRESOURCE(RES_LEVEL_BK_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	putimage(0, 0, &bk);
+	for (LevelBtn* btn : levelBtns) {
+		btn->draw();
+	}
+}
+
 void operate() {
 	while (peekmessage(&msg)) {
 		if (msg.message == WM_KEYDOWN) {
@@ -460,7 +468,6 @@ void boomRecover() {
 		player.playerState.BoomRecoverProgress++;
 	}
 }
-
 
 void summonTool() {
 	if (killNumCache >= 3) {//#####此处更改
@@ -543,32 +550,22 @@ void beyondControl() {
 	if (player.playerState.HP > player.playerState.maxHP) { player.playerState.HP = player.playerState.maxHP; }
 }
 
-void calc() {
-	summonEnemy();
-	summonTool();
-	toolCalc();
-	boomBoom();
-	enemyMove();
-	boomRecover();
-	effectCalc();
-	//游戏数值越界控制
-	beyondControl();
-	int player_dir_x = player.isRightMove -player.isLeftMove;
+void calcPlayerMove(){
+	int player_dir_x = player.isRightMove - player.isLeftMove;
 	int player_dir_y = player.isDownMove - player.isUpMove;
 	double xxx = player_dir_x / sqrt(player_dir_x * player_dir_x + player_dir_y * player_dir_y);
 	double yyy = player_dir_y / sqrt(player_dir_x * player_dir_x + player_dir_y * player_dir_y);
-	if(player_dir_x * player_dir_x + player_dir_y * player_dir_y!=0){
-	player.x += (int)(xxx * player.playerState.speed);
-	player.y += (int)(yyy * player.playerState.speed);
+	if (player_dir_x * player_dir_x + player_dir_y * player_dir_y != 0) {
+		player.x += (int)(xxx * player.playerState.speed);
+		player.y += (int)(yyy * player.playerState.speed);
 	}
-	if (player.x < PLAYER_IMG_WIDTH/2) { player.x = PLAYER_IMG_WIDTH/2; }
+	if (player.x < PLAYER_IMG_WIDTH / 2) { player.x = PLAYER_IMG_WIDTH / 2; }
 	else if (player.x > WINDOW_WIDTH - PLAYER_IMG_WIDTH / 2) { player.x = WINDOW_WIDTH - PLAYER_IMG_WIDTH / 2; }
 	if (player.y < PLAYER_IMG_HEIGHT / 2) { player.y = PLAYER_IMG_HEIGHT / 2; }
 	else if (player.y > WINDOW_HEIGHT - PLAYER_IMG_HEIGHT / 2) {
 		player.y = WINDOW_HEIGHT - PLAYER_IMG_HEIGHT / 2;
 	}
-	
-};
+}
 
 void resetGame() {
 	//重置玩家状态
@@ -608,12 +605,114 @@ void resetGame() {
 
 }
 
-void endPage() {
-	
-	
+void calcLose() {
+	if (GetAsyncKeyState('R')) { game.state = Game::playing; }
+	if (GetAsyncKeyState(VK_ESCAPE)) { game.state = Game::menu; }
+}
+
+void temp_isGameEnd() {
+	if (player.playerState.HP <= 0) {
+		if (score > history_max_score) { history_max_score = score; }
+		game.state = Game::gameover;
+		resetGame();
+	}
+}
+
+void calcPlaying() {
+	summonEnemy();
+	summonTool();
+	toolCalc();
+	boomBoom();
+	enemyMove();
+	boomRecover();
+	effectCalc();
+	beyondControl();
+	calcPlayerMove();
+	temp_isGameEnd();
+};
+
+void calcMenu() {
+	while (peekmessage(&msg)) {
+		// 获取鼠标位置
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			for (Button* button : buttonList) {
+				// 判断鼠标是否在按钮上
+				if (mx >= button->x && mx <= button->x + button->width && my >= button->y && my <= button->y + button->height) {
+					button->isHover = true;
+					// 处理点击逻辑
+					if (msg.message == WM_LBUTTONDOWN) {
+						button->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (button->isActive) {
+							if (button == &startButton) {
+								game.state = Game::selectLevel;
+							}
+							else if (button == &exitButton) {
+								exit(0);
+							}
+						}
+						button->isActive = false;
+					}
+				}
+				else {
+					button->isHover = false;
+					button->isActive = false;
+				}
+			}
+		}
+	}
+}
+
+void calcSelectLevel() {
+	while (peekmessage(&msg)) {
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			for (LevelBtn* btn : levelBtns) {
+				if (mx >= btn->x && mx <= btn->x + btn->width && my >= btn->y && my <= btn->y + btn->height) {
+					btn->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						btn->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (btn->isActive && !btn->isLocked) {
+							//开始关卡传参
+							startGame(btn->id);
+						}
+						btn->isActive = false;
+					}
+				}
+				else {
+					btn->isHover = false;
+					btn->isActive = false;
+				}
+			}
+		}
+	}
+}
+
+void calc() {
+	if (game.state == Game::menu) {
+		calcMenu();
+	}
+	else if (game.state == Game::selectLevel) {
+		calcSelectLevel();
+	}
+	else if (game.state == Game::playing) {
+		operate();
+		calcPlaying();
+	}
+	else if (game.state == Game::gameover) {
+		calcLose();
+	}
+}
+
+void drawGameover() {
 	Sleep(100);
-	BeginBatchDraw();
-	cleardevice();
+
 	putimageAlpha(0, 0, endImg);
 	setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
 	COLORREF fontbk = RGB(255, 0, 0);
@@ -625,6 +724,25 @@ void endPage() {
 	_stprintf_s(scoreShowH, _T("历史最高分：%d"), history_max_score);
 	outtextxy(200, 200, scoreShow);
 	outtextxy(200, 300, scoreShowH);
+}
+
+void draw(DWORD time) {
+	BeginBatchDraw();
+	cleardevice();
+	if (game.state == Game::menu) {
+		drawMenu(history_max_score);
+	}
+	else if (game.state == Game::playing) {
+		drawPlaying(time);
+		cout <<"draw playing" << endl;
+	}
+	else if (game.state == Game::selectLevel) {
+		drawLevelSelect();
+	}
+	else if (game.state == Game::gameover) {
+		drawGameover();
+	}
+
 
 	EndBatchDraw();
 }

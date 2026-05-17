@@ -70,6 +70,9 @@ extern const int RES_BUTTON_EXIT_ACTIVE_ID;
 extern const int HISTORY_SCORE_SHOW_MARGIN_TOP;
 extern const int HISTORY_SCORE_SHOW_MARGIN_RIGHT;
 extern const int RES_END_IMG_ID;
+extern const int RES_LEVEL_BK_ID;
+
+
 enum bulletType {
     normal, rotated, boom
 };

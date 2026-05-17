@@ -401,7 +401,7 @@ Button::~Button() {
 	hoverImg.~IMAGE();
 	activeImg.~IMAGE();
 }
-void Button::draw() {
+void  Button::draw() {
 	if (isActive) {
 		putimageAlpha(x, y, &activeImg);
 	}
@@ -486,4 +486,44 @@ int Registryer::readInt(string valueName, int defaultValue = 0) {
 	}
 
 	return (int)value;
+};
+
+struct levelInfor {
+	int id;
+	int enemyHP;
+	int enemyNum;
+	int enemySpeed;
+	bool isUnlock;
+};
+
+//id//敌人血量//敌人数量//敌人速度//是否解锁
+const levelInfor levelList[16] = {
+{ 1, 50, 3, 1, true},
+{ 2, 50, 5, 1, false },
+{ 3, 100, 5, 1, false },
+{ 4, 100, 7, 2, false },
+{ 5, 150, 7, 2, false }
+};
+
+
+
+
+LevelBtn::LevelBtn(int x, int y, int width, int height, int imgID, int hoverImgID, int activeImgID, int lockedImgID, void* onClickFunc, int id) :Button(x, y, width, height, imgID, hoverImgID, activeImgID, onClickFunc) {
+	this->id = id;
+};
+
+void LevelBtn::draw() {
+	if(isLocked){
+		return;
+	}
+
+	if (isActive) {
+		putimageAlpha(x, y, &activeImg);
+	}
+	else if (isHover) {
+		putimageAlpha(x, y, &hoverImg);
+	}
+	else {
+		putimageAlpha(x, y, &img);
+	}
 }

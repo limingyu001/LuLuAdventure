@@ -227,12 +227,62 @@
 #define IDB_PNG222                      333
 #define IDB_PNG223                      334
 #define IDB_PNG224                      335
+#define IDB_PNG225                      336
+#define IDB_PNG226                      337
+#define IDB_PNG227                      338
+#define IDB_PNG228                      339
+#define IDB_PNG229                      340
+#define IDB_PNG230                      341
+#define IDB_PNG231                      342
+#define IDB_PNG232                      343
+#define IDB_PNG233                      344
+#define IDB_PNG234                      345
+#define IDB_PNG235                      346
+#define IDB_PNG236                      347
+#define IDB_PNG237                      348
+#define IDB_PNG238                      349
+#define IDB_PNG239                      350
+#define IDB_PNG240                      351
+#define IDB_PNG241                      352
+#define IDB_PNG242                      353
+#define IDB_PNG243                      354
+#define IDB_PNG244                      355
+#define IDB_PNG245                      356
+#define IDB_PNG246                      357
+#define IDB_PNG247                      358
+#define IDB_PNG248                      359
+#define IDB_PNG249                      360
+#define IDB_PNG250                      361
+#define IDB_PNG251                      362
+#define IDB_PNG252                      363
+#define IDB_PNG253                      364
+#define IDB_PNG254                      365
+#define IDB_PNG255                      366
+#define IDB_PNG256                      367
+#define IDB_PNG257                      368
+#define IDB_PNG258                      369
+#define IDB_PNG259                      370
+#define IDB_PNG260                      371
+#define IDB_PNG261                      372
+#define IDB_PNG262                      373
+#define IDB_PNG263                      374
+#define IDB_PNG264                      375
+#define IDB_PNG265                      376
+#define IDB_PNG266                      377
+#define IDB_PNG267                      378
+#define IDB_PNG268                      379
+#define IDB_PNG269                      380
+#define IDB_PNG270                      381
+#define IDB_PNG271                      382
+#define IDB_PNG272                      383
+#define IDB_PNG273                      384
+#define IDB_PNG274                      385
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        336
+#define _APS_NEXT_RESOURCE_VALUE        386
 #define _APS_NEXT_COMMAND_VALUE         40003
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101

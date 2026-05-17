@@ -715,6 +715,156 @@
     <Image Include="img\gui\endpage.png">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="img\gui\levelbtn\levelPage.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\normal\level_btn_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\active\level_btn_active_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\locked_level_btn.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="噜噜大冒险.rc">

@@ -70,3 +70,7 @@ const int RES_BUTTON_EXIT_ID = 331;//资源ID，退出按钮图片
 const int RES_BUTTON_EXIT_HOVER_ID = 332;//资源ID，退出按钮悬停图片
 const int RES_BUTTON_EXIT_ACTIVE_ID = 333;//资源ID，退出按钮按下图片
 const int RES_END_IMG_ID = 335;//资源ID，结束图片
+const int RES_LEVEL_BK_ID = 336;//资源ID，关卡选择界面背景图片
+
+
+

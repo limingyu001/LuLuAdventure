@@ -131,7 +131,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Manifest>
@@ -253,6 +253,56 @@
     <Image Include="img\gui\btn_start_default.png" />
     <Image Include="img\gui\btn_start_hover.png" />
     <Image Include="img\gui\endpage.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_1.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_10.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_11.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_12.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_13.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_14.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_15.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_16.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_2.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_3.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_4.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_5.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_6.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_7.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_8.png" />
+    <Image Include="img\gui\levelbtn\active\level_btn_active_9.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_1.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_10.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_11.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_12.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_13.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_14.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_15.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_16.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_2.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_3.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_4.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_5.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_6.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_7.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_8.png" />
+    <Image Include="img\gui\levelbtn\hover\level_btn_hover_9.png" />
+    <Image Include="img\gui\levelbtn\levelPage.png" />
+    <Image Include="img\gui\levelbtn\locked_level_btn.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_1.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_10.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_11.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_12.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_13.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_14.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_15.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_16.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_2.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_3.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_4.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_5.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_6.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_7.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_8.png" />
+    <Image Include="img\gui\levelbtn\normal\level_btn_9.png" />
     <Image Include="img\gui\menu_bk.png" />
     <Image Include="img\ico.ico" />
     <Image Include="img\luluBehind\ani_lulu_behind_1.png" />

@@ -15,6 +15,8 @@ extern const int AVATAR_IMG_HEIGHT;
 extern const int AVATAR_IMG_WIDTH;
 extern const int ORANGE_IMG_HEIGHT;
 extern const int ORANGE_IMG_WIDTH;
+extern const int BTN_GOODS_WIDTH;
+extern const int BTN_GOODS_HEIGHT;
 extern const int SCORE_SHOW_MARGIN_TOP;
 extern const int SCORE_SHOW_MARGIN_RIGHT;
 extern const int TOOL_ICO_WIDTH;
@@ -31,6 +33,7 @@ extern const int RES_PLAYER_RIGHT_START;
 extern const int RES_PLAYER_LEFT_START;
 extern const int RES_PLAYER_BEHIND_START;
 extern const int RES_PLAYER_CIRCLE_START;
+
 extern const int RES_SHADOW_ID;
 extern const int RES_PLAYER_SHADOW_ID;
 extern const int RES_BACKGROUND_ID;
@@ -71,7 +74,27 @@ extern const int HISTORY_SCORE_SHOW_MARGIN_TOP;
 extern const int HISTORY_SCORE_SHOW_MARGIN_RIGHT;
 extern const int RES_END_IMG_ID;
 extern const int RES_LEVEL_BK_ID;
-
+extern const int RES_LEVEL_BUTTONS_START_ID;
+extern const int RES_LEVEL_BUTTONS_HOVER_START_ID;
+extern const int RES_LEVEL_BUTTONS_ACTIVE_START_ID;
+extern const int RES_LEVEL_BUTTONS_LOCKED_ID;
+extern const int RES_WIN_BK_ID;
+extern const int RES_WIN_BTN_START_ID;
+extern const int RES_WIN_BTN_HOVER_START_ID;
+extern const int RES_WIN_BTN_ACTIVE_START_ID;
+extern const int RES_GOODS_BTN_START_ID;
+extern const int RES_GOODS_BTN_HOVER_START_ID;
+extern const int RES_GOODS_BTN_ACTIVE_START_ID;
+extern const int RES_GOODS_BTN_MAXLEVEL_START_ID;
+extern const int RES_GOODS_BTN_UNAFORDABLE_START_ID;
+extern const int RES_BTN_BACK_ID;
+extern const int RES_BTN_BACK_HOVER_ID;
+extern const int RES_BTN_BACK_ACTIVE_ID;
+extern const int RES_BTN_UP_ID;
+extern const int RES_BTN_UP_HOVER_ID;
+extern const int RES_BTN_UP_ACTIVE_ID;
+extern const int RES_ENEMY_DIED_RIGHT_START_ID;
+extern const int RES_ENEMY_DIED_LEFT_START_ID;
 
 enum bulletType {
     normal, rotated, boom

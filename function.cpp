@@ -36,31 +36,47 @@ extern IMAGE effect_greenbk;
 extern IMAGE effect_bluebk;
 extern IMAGE effect_purplebk;
 extern IMAGE effect_sevenbk;
-extern IMAGE* startImg;
-extern IMAGE* endImg;
 extern Game game;
-
+extern Animations* enemy_died_right_animations;
+extern Animations* enemy_died_left_animations;
 int history_max_score = 0;
 int score = 0;
 int toolsSummonDelay = 0;
 int killNumCache = 0;
 vector<LevelBtn*> levelBtns;
-extern levelInfor levelList[16];
+vector<Button*> winBtns;
+vector<Button*> globalBtns;
+Button* upgrateBtn = new Button(1000,10,100,50,RES_BTN_UP_ID,RES_BTN_UP_HOVER_ID,RES_BTN_UP_ACTIVE_ID,nullptr);
+vector<Button*> loseBtns;
+vector<GoodsBtn*> shopBtns;
+
 
 const int LEVEL_BUTTON_START_X = 50;
 const int LEVEL_BUTTON_START_Y = 200;
 const int LEVEL_BUTTON_WIDTH = 100;
 const int LEVEL_BUTTON_HEIGHT = 100;
 const int LEVEL_BUTTON_MARGIN = 20;
-const int RES_LEVEL_BUTTONS_START_ID = 337;
-const int RES_LEVEL_BUTTONS_HOVER_START_ID = 353;
-const int RES_LEVEL_BUTTONS_ACTIVE_START_ID = 369;
-const int RES_LEVEL_BUTTONS_LOCKED_ID = 385; // 假设没有锁定状态的图片，如果有需要可以添加
+
 const int LEVEL_NUM = 16;
+int temp_level = 0;//正在玩的关卡
+const int WIN_BTN_START_X = 450;
+const int WIN_BTN_START_Y = 400;
+const int LOSE_BTN_START_X = 520;
+
+void playerStateUpdate() {
+	
+}
+
+
 //图片加载以及初始化
 void init() {
+	
+	//加载全局按钮
+	Button* backBtn = new Button(10, 10, 50, 50, RES_BTN_BACK_ID, RES_BTN_BACK_HOVER_ID, RES_BTN_BACK_ACTIVE_ID, nullptr);
+	globalBtns.push_back(backBtn);
+
+
 	//创建关卡选择按钮
-	int currentLevel = Reg.readInt("currentLevel", 1);
 	for (int i = 0; i < 16; i++) {
 		int x = LEVEL_BUTTON_START_X + (i%8) * (LEVEL_BUTTON_WIDTH + LEVEL_BUTTON_MARGIN);
 		int y = LEVEL_BUTTON_START_Y+(i/8) * (LEVEL_BUTTON_HEIGHT + LEVEL_BUTTON_MARGIN);
@@ -70,10 +86,30 @@ void init() {
 		int hoverImgID = RES_LEVEL_BUTTONS_HOVER_START_ID + i;
 		int activeImgID = RES_LEVEL_BUTTONS_ACTIVE_START_ID + i;
 		int lockedImgID = RES_LEVEL_BUTTONS_LOCKED_ID;
-		LevelBtn* temp = new LevelBtn(x, y, h, w, imgID , hoverImgID , activeImgID,lockedImgID, nullptr,i+1);
-		temp->id = i;
-		if (i <= currentLevel - 1) { temp->isLocked = false; }
+		LevelBtn* temp = new LevelBtn(x, y, h, w, imgID , hoverImgID , activeImgID,lockedImgID, nullptr,i);
+		if (i < game.currentLevel ) { temp->isLocked = false; }
 		levelBtns.push_back(temp);
+	}
+	//加载胜利界面按钮
+	for (int i = 0;i < 3;i++) {
+		int imgID = RES_WIN_BTN_START_ID + i;
+		int hoverImgID = RES_WIN_BTN_HOVER_START_ID + i;
+		int activeImgID = RES_WIN_BTN_ACTIVE_START_ID + i;
+		Button* temp = new Button(WIN_BTN_START_X + i * (LEVEL_BUTTON_WIDTH + LEVEL_BUTTON_MARGIN), WIN_BTN_START_Y, LEVEL_BUTTON_WIDTH, LEVEL_BUTTON_HEIGHT, imgID, hoverImgID, activeImgID, nullptr);
+		winBtns.push_back(temp);
+	}
+	//加载失败界面按钮
+	for (int i = 0;i < 2;i++) {
+		int imgID = RES_WIN_BTN_START_ID + i;
+		int hoverImgID = RES_WIN_BTN_HOVER_START_ID + i;
+		int activeImgID = RES_WIN_BTN_ACTIVE_START_ID + i;
+		Button* temp = new Button(LOSE_BTN_START_X + i * (LEVEL_BUTTON_WIDTH + LEVEL_BUTTON_MARGIN), WIN_BTN_START_Y, LEVEL_BUTTON_WIDTH, LEVEL_BUTTON_HEIGHT, imgID, hoverImgID, activeImgID, nullptr);
+		loseBtns.push_back(temp);
+	}
+	//加载商店按钮
+	for (int i = 0;i < 5;i++) {
+		GoodsBtn* temp = new GoodsBtn( i * BTN_GOODS_WIDTH ,150,BTN_GOODS_WIDTH,BTN_GOODS_HEIGHT, nullptr,i+1);
+		shopBtns.push_back(temp);
 	}
 
 
@@ -103,11 +139,12 @@ void init() {
 	loadimage(&effect_ico_boomrb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_BOOMRB_ID));
 	loadimage(&effect_ico_orangeb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ORANGEB_ID));
 	loadimage(&effect_ico_iceb, _T("PNG"),MAKEINTRESOURCE(RES_EFFECT_ICO_ICEB_ID));
-	loadimage(startImg, _T("PNG"), MAKEINTRESOURCE(RES_MENUBK_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
-	loadimage(endImg, _T("PNG"), MAKEINTRESOURCE(RES_END_IMG_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
-
-
-
+	player.update();
+	//更新GoodsBtn
+	for (GoodsBtn* btn : shopBtns) {
+		btn->update();
+		btn->playerStateUpdate();
+	}
 };
 
 #pragma comment(lib,"Winmm.lib")
@@ -128,12 +165,24 @@ void putimageAlpha(int dstX, int dstY, int dstW, int dstH,IMAGE* src, int srcX, 
 		{ AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
 }
 
+int currentEnemyNum = 0;
+int enemySpeed = 0;
+int enemyHP = 0;
+int totalEnemyNum = 0;
+int delaycount = 0;
+extern levelInfor levelList[16];
+
 void summonEnemy() {
+	if (totalEnemyNum <= 0) {
+		return;
+	}
 	static int count = 0;
 	count++;
 	if (count >= 120) {
+		cout << "生成敌人，剩余数量：" << totalEnemyNum - 1 << endl;
+		totalEnemyNum--;
 		Animations* temp = new Animations(enemy_animation);
-		Enemy* t = new Enemy(temp);
+		Enemy* t = new Enemy(temp,enemyHP,enemySpeed);
 		enemy_list.push_back(t);
 		count = 0;
 	}
@@ -142,17 +191,28 @@ void summonEnemy() {
 
 Button startButton(950, 300, 280, 120, RES_BUTTON_START_ID, RES_BUTTON_START_HOVER_ID, RES_BUTTON_START_ACTIVE_ID, nullptr);
 Button exitButton(950, 450, 280, 120, RES_BUTTON_EXIT_ID, RES_BUTTON_EXIT_HOVER_ID, RES_BUTTON_EXIT_ACTIVE_ID, nullptr);
+
+
 vector<Button*> buttonList = { &startButton, &exitButton };
 
 void startGame(int level) {
-	game.currentLevel = level;
+	temp_level = level;
+	//修改游戏关卡相关参数
+	enemySpeed = levelList[level].enemySpeed;
+	enemyHP = levelList[level].enemyHP;
+	totalEnemyNum = levelList[level].enemyNum;
 	game.state = Game::playing;
 }
 
+vector<Enemy*> enemy_died_list;
+void drawEnemyDied(int time) {
+	for (Enemy* enemy : enemy_died_list) {
+			enemy->animations->front_animation->play(enemy->x - PLAYER_IMG_WIDTH / 2, enemy->y - PLAYER_IMG_HEIGHT / 2, time, false);
+		}
+	}
+
 void drawMenu(int hss) {
-	BeginBatchDraw();
-	cleardevice();
-	putimageAlpha(0, 0, startImg);
+	putimageAlpha(0, 0, &game.menuImgBK);
 	//遍历按钮数组
 	for (Button* button : buttonList) {
 		button->draw();
@@ -168,7 +228,6 @@ void drawMenu(int hss) {
 	settextstyle(16, 8, _T("宋体"));
 	settextcolor(RGB(255, 255, 255));
 	outtextxy(1100, 200, _T("Version 1.1.0 (build2)"));
-	EndBatchDraw();
 }
 
 void drawEnemy(int time,int y) {
@@ -210,8 +269,6 @@ void enemyMove(){
 				enemy->isAttacked = false;
 			}
 		}
-
-
 	}
 
 	//敌人清除
@@ -226,20 +283,30 @@ void enemyMove(){
 			player.getAttack();
 			delete enemy;
 			it = enemy_list.erase(it);
-			
 			continue;
 		}
-
-
 		// 删除指针指向的对象并移除vector中的元素
 		if (enemy->HP <= 0) {
-
-			player.playerState.BoomNum < player.playerState.BoomMaxNum - 1 ? player.playerState.BoomNum++ : player.playerState.BoomRecoverProgress = player.playerState.BoomRecoverProgressMax - 1;
+			//player.playerState.BoomNum < player.playerState.BoomMaxNum - 1 ? player.playerState.BoomNum++ : player.playerState.BoomRecoverProgress = player.playerState.BoomRecoverProgressMax - 1;
+			//生成敌人死亡动画
+			Animations* tempAniRight = new Animations(enemy_died_right_animations);
+			Animations* tempAniLeft = new Animations(enemy_died_left_animations);
+			Enemy* temp = new Enemy(enemy->animations, 0, 0,enemy->x,enemy->y);
+			if (enemy->x - player.x > 0) { temp->animations = tempAniLeft; }
+			else { temp->animations = tempAniRight; }
+			enemy_died_list.push_back(temp);
 			delete enemy;
 			it = enemy_list.erase(it);
 			score++;
-			killNumCache++;
-			player.killShowTick = 60;
+			int randNum = rand() % 100;
+			if (randNum <= player.playerPersistState.killEnemyAddBoomNumPercent) {
+				player.playerState.BoomNum < player.playerState.BoomMaxNum ? player.playerState.BoomNum++ : player.playerState.BoomRecoverProgress++;
+			}
+			//killNumCache++;
+			//player.killShowTick = 60;
+			
+			
+			
 		}
 		else {
 			++it;
@@ -257,8 +324,6 @@ void drawBoom(DWORD time) {
 void drawHead(int t) {
 	//特殊头像显示
 	avatar_animation->behind_animation->play(10,10,t,player.specialShowTick,RES_LULUBEATTACTED_ID);
-
-
 
 	if (player.specialShowTick) { player.specialShowTick--; }
 	for (int i = 0; i < player.playerState.maxHP; i++) {
@@ -292,15 +357,13 @@ void drawHead(int t) {
 		}
 		putimageAlpha(30 + AVATAR_IMG_WIDTH + (j * (ORANGE_IMG_WIDTH + 10)), 30 + ORANGE_IMG_HEIGHT, &s);
 		TCHAR scoreShow[128];
-		//得分显示
+		//关卡显示
 		static COLORREF fontbk = RGB(255, 255, 255);
-		if(player.killShowTick%7==0&&player.killShowTick){fontbk = RGB(255, 255, 255); }
-		if(player.killShowTick%14==0&&player.killShowTick){fontbk = RGB(255, 0, 0); }
-		if (player.killShowTick) { player.killShowTick--; }
+		fontbk = RGB(255, 255, 255); 
 		setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
 		settextcolor(fontbk);
 		settextstyle(30, 15,_T("宋体"));
-		_stprintf_s(scoreShow,_T("得分：%d"),score);
+		_stprintf_s(scoreShow,_T("第%d关"),temp_level+1);
 		outtextxy(WINDOW_WIDTH - SCORE_SHOW_MARGIN_RIGHT, SCORE_SHOW_MARGIN_TOP, scoreShow);
 
 	}
@@ -365,9 +428,9 @@ void effectCalc() {
 }
 
 void drawPlaying(DWORD time) {
-	IMAGE bk;
-	loadimage(&bk, _T("PNG"), MAKEINTRESOURCE(RES_BACKGROUND_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
-	putimage(0, 0, &bk);
+
+	putimage(0, 0, &game.playingBKImg);
+	
 	int t = time;
 	drawTools();
 	drawBoom(t);
@@ -376,17 +439,21 @@ void drawPlaying(DWORD time) {
 	player.draw(t);
 	//绘制玩家前方敌人(y+方向)
 	drawEnemy(t,1);
+	drawEnemyDied(t);
 	drawHead(t);
 	drawEffect();
 };
 
 void drawLevelSelect() {
-	IMAGE bk;
-	loadimage(&bk, _T("PNG"), MAKEINTRESOURCE(RES_LEVEL_BK_ID), WINDOW_WIDTH, WINDOW_HEIGHT);
-	putimage(0, 0, &bk);
+	putimage(0, 0, &game.levelSelectBK);
 	for (LevelBtn* btn : levelBtns) {
 		btn->draw();
 	}
+	//全局按钮
+	for (Button* btn : globalBtns) {
+		btn->draw();
+	}
+	upgrateBtn->draw();
 }
 
 void operate() {
@@ -457,6 +524,7 @@ void boomBoom() {
 }
 
 void boomRecover() {
+	//防止越界
 	if (player.playerState.BoomRecoverSpeed <= 0) { player.playerState.BoomRecoverSpeed = 1; }
 	if (player.playerState.BoomMaxNum <= player.playerState.BoomNum) { return; }
 	if (player.playerState.BoomRecoverProgress == player.playerState.BoomRecoverProgressMax) {
@@ -567,17 +635,59 @@ void calcPlayerMove(){
 	}
 }
 
+void resetBtn() {
+	//关卡选择界面按钮状态重置
+	for (int i = 0;i < 16;i++) {
+		levelBtns[i]->isActive = false;
+		levelBtns[i]->isHover = false;
+		//重新计算按钮锁定状态
+		if (i < game.currentLevel) {
+			levelBtns[i]->isLocked = false;
+		}
+		else {
+			levelBtns[i]->isLocked = true;
+		}
+	}
+	//主界面按钮状态重置
+	for (Button* btn : buttonList) {
+		btn->isActive = false;
+		btn->isHover = false;
+	}
+	//胜利界面按钮状态重置
+	for (Button* btn : winBtns) {
+		btn->isActive = false;
+		btn->isHover = false;
+	}
+	//失败界面按钮状态重置
+	for (Button* btn : loseBtns) {
+		btn->isActive = false;
+		btn->isHover = false;
+	}
+	//全局按钮状态重置
+	for (Button* btn : globalBtns) {
+		btn->isActive = false;
+		btn->isHover = false;
+	}
+	//商店按钮状态重置
+	for (GoodsBtn* btn : shopBtns) {
+		btn->isActive = false;
+		btn->isHover = false;
+	}
+
+}
+
 void resetGame() {
 	//重置玩家状态
-	player.playerState.HP = 5;
-	player.playerState.maxHP = 5;
-	player.playerState.speed = 5;
-	player.playerState.BoomNum = 5;
-	player.playerState.BoomMaxNum = 5;
-	player.playerState.BoomRecoverSpeed = 4;
+	player.playerState.HP = player.playerPersistState.maxHP;
+	player.playerState.maxHP = player.playerPersistState.maxHP;
+	player.playerState.speed = player.playerPersistState.speed;
+	player.playerState.BoomNum = player.playerPersistState.BoomMaxNum;
+	player.playerState.BoomMaxNum = player.playerPersistState.BoomMaxNum;
+	player.playerState.BoomRecoverSpeed = player.playerPersistState.BoomRecoverSpeed;
 	player.playerState.BoomRecoverProgress = 0;
-	player.playerState.BoomRecoverProgressMax = 50;
+	player.playerState.BoomRecoverProgressMax = player.playerPersistState.BoomRecoverProgressMax;
 	player.playerState.BoomRecoverTick = 0;
+	delaycount = 0;
 	//清除敌人
 	for (Enemy* enemy : enemy_list) {
 		delete enemy;
@@ -602,20 +712,81 @@ void resetGame() {
 	//重置玩家位置
 	player.x = 300;
 	player.y = 300;
-
+	//游戏参数重置
+	currentEnemyNum = 0;
+	enemySpeed = 0;
+	enemyHP = 0;
+	totalEnemyNum = 0;
+	delaycount = 0;
+	//重置按钮状态
+	resetBtn();
 }
 
 void calcLose() {
-	if (GetAsyncKeyState('R')) { game.state = Game::playing; }
-	if (GetAsyncKeyState(VK_ESCAPE)) { game.state = Game::menu; }
+	//遍历按钮数组
+	while (peekmessage(&msg)) {
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			for (Button* button : loseBtns) {
+				if (mx >= button->x && mx <= button->x + button->width && my >= button->y && my <= button->y + button->height) {
+					button->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						button->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (button->isActive) {
+							if (button == loseBtns[0]) {
+								game.state = Game::selectLevel;
+							}
+							else if (button == loseBtns[1]) {
+								startGame(temp_level);
+							}
+						}
+						button->isActive = false;
+					}
+				}
+				else {
+					button->isHover = false;
+					button->isActive = false;
+				}
+			}
+		}
+	}
 }
 
 void temp_isGameEnd() {
-	if (player.playerState.HP <= 0) {
-		if (score > history_max_score) { history_max_score = score; }
-		game.state = Game::gameover;
-		resetGame();
+	currentEnemyNum = 0;
+	for (Enemy* enemy : enemy_list) {
+		currentEnemyNum++;
 	}
+	if (player.playerState.HP <= 0) {
+		if (++delaycount >= 100) {
+			cout << "挂了！" << endl;
+			game.state = Game::gameLose;
+			resetGame();
+		}
+		
+	}else if (currentEnemyNum <= 0&&totalEnemyNum<=0) {
+		if (++delaycount >= 100) {
+			game.state = Game::gameWin;
+			temp_level++;
+			if (temp_level >= game.currentLevel) { game.currentLevel++; }
+			cout << "过关了！" << endl;
+			Reg.setInt("currentLevel", game.currentLevel);
+			resetGame();
+		}
+		
+	}
+}
+
+void calcEnemyDied() {
+	for (Enemy* enemy : enemy_died_list) {
+		if (++enemy->speed >= 90) {
+			enemy_died_list.erase(find(enemy_died_list.begin(), enemy_died_list.end(), enemy));
+			delete enemy;
+		}
+		}
 }
 
 void calcPlaying() {
@@ -628,6 +799,7 @@ void calcPlaying() {
 	effectCalc();
 	beyondControl();
 	calcPlayerMove();
+	calcEnemyDied();
 	temp_isGameEnd();
 };
 
@@ -649,6 +821,7 @@ void calcMenu() {
 						if (button->isActive) {
 							if (button == &startButton) {
 								game.state = Game::selectLevel;
+								resetBtn();
 							}
 							else if (button == &exitButton) {
 								exit(0);
@@ -681,6 +854,7 @@ void calcSelectLevel() {
 						if (btn->isActive && !btn->isLocked) {
 							//开始关卡传参
 							startGame(btn->id);
+							cout << "开始第" << btn->id + 1 << "关！" << endl;
 						}
 						btn->isActive = false;
 					}
@@ -690,7 +864,131 @@ void calcSelectLevel() {
 					btn->isActive = false;
 				}
 			}
+			//全局按钮
+			for (Button* btn : globalBtns) {
+				if (mx >= btn->x && mx <= btn->x + btn->width && my >= btn->y && my <= btn->y + btn->height) {
+					btn->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						btn->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (btn->isActive) {
+							game.state = Game::menu;
+						}
+						btn->isActive = false;
+					}
+				}
+				else {
+					btn->isHover = false;
+					btn->isActive = false;
+				}
+			}
+			//升级按钮
+			if (mx >= upgrateBtn->x && mx <= upgrateBtn->x + upgrateBtn->width && my >= upgrateBtn->y && my <= upgrateBtn->y + upgrateBtn->height) {
+				upgrateBtn->isHover = true;
+				if (msg.message == WM_LBUTTONDOWN) {
+					upgrateBtn->isActive = true;
+				}
+				else if (msg.message == WM_LBUTTONUP) {
+					if (upgrateBtn->isActive) {
+						game.state = Game::shop;
+					}
+					upgrateBtn->isActive = false;
+				}
+			}
+			else {
+				upgrateBtn->isHover = false;
+				upgrateBtn->isActive = false;
+			}
+
 		}
+	}
+}
+
+void calcWin() {
+	while (peekmessage(&msg)) {
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			for (Button* button : winBtns) {
+				if (mx >= button->x && mx <= button->x + button->width && my >= button->y && my <= button->y + button->height) {
+					button->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						button->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (button->isActive) {
+							if (button == winBtns[0]) {
+								game.state = Game::selectLevel;
+							}
+							else if (button == winBtns[1]) {
+								startGame(game.currentLevel-1);
+							}
+							else if (button == winBtns[2]) {
+								startGame(game.currentLevel);
+							}
+						}
+						button->isActive = false;
+					}
+				}
+				else {
+					button->isHover = false;
+					button->isActive = false;
+				}
+			}
+		}
+	}
+}
+
+void calcShop() {
+	while (peekmessage(&msg)) {
+		if (msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN || msg.message == WM_LBUTTONUP) {
+			int mx = msg.x;
+			int my = msg.y;
+			//全局按钮
+			for (Button* btn : globalBtns) {
+				if (mx >= btn->x && mx <= btn->x + btn->width && my >= btn->y && my <= btn->y + btn->height) {
+					btn->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						btn->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (btn->isActive) {
+							game.state = Game::menu;
+						}
+						btn->isActive = false;
+					}
+				}
+				else {
+					btn->isHover = false;
+					btn->isActive = false;
+				}
+			}
+			//商品按钮
+			for (GoodsBtn* btn : shopBtns) {
+				if (mx >= btn->x && mx <= btn->x + btn->width && my >= btn->y && my <= btn->y + btn->height) {
+					if (btn->price > player.playerPersistState.coinNum) { continue; }
+					if (btn->level >= btn->maxLevel) { continue; }
+					btn->isHover = true;
+					if (msg.message == WM_LBUTTONDOWN) {
+						btn->isActive = true;
+					}
+					else if (msg.message == WM_LBUTTONUP) {
+						if (btn->isActive) {
+							//商品购买逻辑
+							btn->buy();
+						}
+						btn->isActive = false;
+					}
+				}
+				else {
+					btn->isHover = false;
+					btn->isActive = false;
+				}
+
+			}
+		}
+
 	}
 }
 
@@ -705,25 +1003,60 @@ void calc() {
 		operate();
 		calcPlaying();
 	}
-	else if (game.state == Game::gameover) {
+	else if (game.state == Game::gameWin) {
+		calcWin();
+	}
+	else if (game.state == Game::gameLose) {
 		calcLose();
+	}
+	else if (game.state == Game::shop) {
+	calcShop();
 	}
 }
 
 void drawGameover() {
-	Sleep(100);
+	putimageAlpha(0, 0, &game.loseImgBK);
+	//setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
+	//COLORREF fontbk = RGB(255, 0, 0);
+	//TCHAR scoreShow[128];
+	//TCHAR scoreShowH[128];
+	//settextcolor(fontbk);
+	//settextstyle(100, 50, _T("宋体"));
+	//_stprintf_s(scoreShow, _T("你的得分：%d"), score);
+	//_stprintf_s(scoreShowH, _T("历史最高分：%d"), history_max_score);
+	//outtextxy(200, 200, scoreShow);
+	//outtextxy(200, 300, scoreShowH);
 
-	putimageAlpha(0, 0, endImg);
+	//遍历按钮数组
+	for (Button* button : loseBtns) {
+		button->draw();
+	}
+}
+
+void drawGameWin() {
+	putimageAlpha(0, 0, &game.winImgBK);
+	//遍历按钮数组
+	for (Button* button : winBtns) {
+		button->draw();
+	}
+}
+
+void drawShop() {
+	//遍历按钮数组
+	for (GoodsBtn* button : shopBtns) {
+		button->draw();
+	}
+	//全局按钮
+	for (Button* btn : globalBtns) {
+		btn->draw();
+	}
 	setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
-	COLORREF fontbk = RGB(255, 0, 0);
-	TCHAR scoreShow[128];
-	TCHAR scoreShowH[128];
-	settextcolor(fontbk);
-	settextstyle(100, 50, _T("宋体"));
-	_stprintf_s(scoreShow, _T("你的得分：%d"), score);
-	_stprintf_s(scoreShowH, _T("历史最高分：%d"), history_max_score);
-	outtextxy(200, 200, scoreShow);
-	outtextxy(200, 300, scoreShowH);
+	COLORREF fontbk = RGB(255, 255, 255);
+	TCHAR text[128];
+	_stprintf_s(text, _T("最大血量%d"),player.playerPersistState.coinNum);
+	outtextxy(WINDOW_WIDTH-300, 10, text);
+	
+
 }
 
 void draw(DWORD time) {
@@ -734,15 +1067,18 @@ void draw(DWORD time) {
 	}
 	else if (game.state == Game::playing) {
 		drawPlaying(time);
-		cout <<"draw playing" << endl;
 	}
 	else if (game.state == Game::selectLevel) {
 		drawLevelSelect();
 	}
-	else if (game.state == Game::gameover) {
+	else if (game.state == Game::gameLose) {
 		drawGameover();
 	}
-
-
+	else if (game.state == Game::gameWin) {
+		drawGameWin();
+	}
+	else if (game.state == Game::shop) {
+		drawShop();
+	}
 	EndBatchDraw();
 }

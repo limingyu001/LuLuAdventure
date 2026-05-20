@@ -865,6 +865,429 @@
     <Image Include="img\gui\levelbtn\locked_level_btn.png">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="img\gui\winpage.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_hover_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_hover_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_hover_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_active_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_active_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\winBtn\btn_win_active_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_normal_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_normal_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_normal_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_normal_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_normal_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_hover_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_hover_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_hover_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_hover_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_hover_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_active_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_active_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_active_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_active_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_active_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_maxlevel_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_maxlevel_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_maxlevel_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_maxlevel_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_maxlevel_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_unafor_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_unafor_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_unafor_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_unafor_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\goods\goods_unafor_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_back_normal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_back_hover.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_back_active.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\up_normal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\up_hover.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\levelbtn\up_active.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_21.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_22.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_23.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_24.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_25.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_26.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_27.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_28.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_29.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_30.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_31.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_32.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_33.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_34.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_35.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_36.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_37.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_38.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_39.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_40.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_41.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_42.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_43.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_44.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_45.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_46.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_47.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_48.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_49.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemDiedRight\ani_enemy_right_50.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_3.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_4.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_6.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_7.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_8.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_9.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_11.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_12.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_13.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_14.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_15.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_16.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_17.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_18.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_19.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_20.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_21.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_22.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_23.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_24.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_25.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_26.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_27.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_28.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_29.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_30.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_31.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_32.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_33.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_34.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_35.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_36.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_37.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_38.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_39.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_40.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_41.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_42.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_43.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_44.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_45.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_46.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_47.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_48.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_49.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\enemyDiedLeft\ani_enemy_left_50.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="噜噜大冒险.rc">

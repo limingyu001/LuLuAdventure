@@ -206,9 +206,9 @@ Bullet::Bullet(bulletType t, int x, int y) {
 	this->y = y;
 	this->BoomAnimations = new Animations(boom_animations);
 	if (t == boom) {
-		damageRange = 200;
+		damageRange = 150;
 		speed = 82;
-		damage = 51;
+		damage = player.playerPersistState.putBoomDamage;
 	}
 }
 Bullet* createBoom() {
@@ -216,6 +216,25 @@ Bullet* createBoom() {
 	return temp;
 }
 //玩家类
+Player::Player(int, int, Animations* ani, specialTable* sp) {
+	x = 300;
+	y = 300;
+	specialShowTable = sp;
+	animations = ani;
+	loadimage(&shadow, _T("PNG"), MAKEINTRESOURCE(RES_SHADOW_ID), PLAYER_SHADOW_WIDTH, PLAYER_SHADOW_HEIGHT);
+	this->playerPersistState.coinNum = Reg.readInt("coinNum", 0);
+}
+
+void Player::update() {
+	this->playerState.maxHP = this->playerPersistState.maxHP;
+	this->playerState.BoomMaxNum = this->playerPersistState.BoomMaxNum;
+	this->playerState.BoomNum = this->playerState.BoomMaxNum;
+	this->playerState.BoomRecoverSpeed = this->playerPersistState.BoomRecoverSpeed;
+	this->playerState.BoomRecoverProgressMax = this->playerPersistState.BoomRecoverProgressMax;
+	this->playerState.speed = this->playerPersistState.speed;
+	this->playerPersistState.coinNum = Reg.readInt("coinNum", 0);
+}
+
 void Player::drawShadow() {
 	putimageAlpha(x-PLAYER_SHADOW_WIDTH/2, y+PLAYER_IMG_HEIGHT/3, &shadow);
 }
@@ -261,10 +280,10 @@ void Player::draw(int time) {
 	}
 }
 //敌人类
-Enemy::Enemy(Animations* ani) {
+Enemy::Enemy(Animations* ani, int hp, int spd) {
 	Animations* temp = new Animations(*ani);
-	HP = 100;
-	speed = 3;
+	HP = hp;
+	speed = spd;
 	attactedShowTick = 0;
 	animations = temp;
 	loadimage(&shadow,_T("PNG"), MAKEINTRESOURCE(RES_SHADOW_ID), PLAYER_SHADOW_WIDTH, PLAYER_SHADOW_HEIGHT);
@@ -292,6 +311,19 @@ Enemy::Enemy(Animations* ani) {
 		x = WINDOW_WIDTH+5;
 	}
 }
+
+Enemy::Enemy(Animations* ani, int hp, int spd,int x,int y) {
+	Animations* temp = new Animations(*ani);
+	HP = hp;
+	speed = spd;
+	this->x = x;
+	this->y = y;
+	animations = temp;
+	loadimage(&shadow, _T("PNG"), MAKEINTRESOURCE(RES_SHADOW_ID), PLAYER_SHADOW_WIDTH, PLAYER_SHADOW_HEIGHT);
+}
+
+
+
 void Enemy::drawShadow() {
 	putimageAlpha(x - ENEMY_SHADOW_WIDTH / 2, y - ENEMY_IMG_HEIGHT/5, &shadow);
 
@@ -381,6 +413,14 @@ Button::Button(int x, int y, int width, int height, wstring imgPath, wstring hov
 	this->hoverImg = hoverImg;
 	this->activeImg = activeImg;
 }
+//Button无参构造
+Button::Button() {
+	x = 0;
+	y = 0;
+	width = 0;
+	height = 0;
+	onClickFunc = nullptr;
+}
 
 Button::Button(int x, int y, int width, int height, int imgID, int hoverImgID, int activeImgID, void* onClickFunc) {
 	this->x = x;
@@ -468,7 +508,6 @@ int Registryer::readInt(string valueName, int defaultValue = 0) {
 	if (result != ERROR_SUCCESS) {
 		return defaultValue;
 	}
-
 	// 读取整数值
 	result = RegQueryValueExA(
 		hKey,
@@ -480,29 +519,10 @@ int Registryer::readInt(string valueName, int defaultValue = 0) {
 	);
 
 	RegCloseKey(hKey);
-
 	if (result != ERROR_SUCCESS) {
 		return defaultValue;
 	}
-
 	return (int)value;
-};
-
-struct levelInfor {
-	int id;
-	int enemyHP;
-	int enemyNum;
-	int enemySpeed;
-	bool isUnlock;
-};
-
-//id//敌人血量//敌人数量//敌人速度//是否解锁
-const levelInfor levelList[16] = {
-{ 1, 50, 3, 1, true},
-{ 2, 50, 5, 1, false },
-{ 3, 100, 5, 1, false },
-{ 4, 100, 7, 2, false },
-{ 5, 150, 7, 2, false }
 };
 
 
@@ -514,6 +534,9 @@ LevelBtn::LevelBtn(int x, int y, int width, int height, int imgID, int hoverImgI
 
 void LevelBtn::draw() {
 	if(isLocked){
+		IMAGE lockedImg;
+		loadimage(&lockedImg, _T("PNG"), MAKEINTRESOURCE(RES_LEVEL_BUTTONS_LOCKED_ID), width, height);
+		putimageAlpha(x, y, &lockedImg);
 		return;
 	}
 
@@ -527,3 +550,218 @@ void LevelBtn::draw() {
 		putimageAlpha(x, y, &img);
 	}
 }
+
+Game::Game(int menuImgBKID, int levelSelectBKID, int playingBKImgID, int loseImgBKID, int winImgBKID, int shopImgBKID) {
+	loadimage(&menuImgBK, _T("PNG"), MAKEINTRESOURCE(menuImgBKID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(&levelSelectBK, _T("PNG"), MAKEINTRESOURCE(levelSelectBKID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(&playingBKImg, _T("PNG"), MAKEINTRESOURCE(playingBKImgID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(&loseImgBK, _T("PNG"), MAKEINTRESOURCE(loseImgBKID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(&winImgBK, _T("PNG"), MAKEINTRESOURCE(winImgBKID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	loadimage(&shopImgBK, _T("PNG"), MAKEINTRESOURCE(shopImgBKID), WINDOW_WIDTH, WINDOW_HEIGHT);
+	currentLevel = Registryer().readInt("currentLevel", 1);
+	
+
+}
+
+bool GoodsBtn::isUnaffordable() {
+	if (player.playerPersistState.coinNum < price) { return true; }
+	else { return false; }
+}
+
+GoodsBtn::GoodsBtn(int x, int y, int width, int height, void* onClickFunc, int id){
+		this->x = x;
+		this->y = y;
+		this->width = width;
+		this->height = height;
+		this->id = id;
+	switch (id) {
+	case 1:
+		description = "增加最大炸弹数";
+		this->price = 200;
+		this->priceIncreaseRate = 1.5;
+		this->level = Reg.readInt("up_1", 0);
+		this->maxLevel = 10;
+		this->baseValue = 5;
+		this->deltaRate = 1;
+		this->deltaNum = 1;
+		this->priceIncreaseRate = 1.5;
+		this->price = this->price * pow(this->priceIncreaseRate, this->level);
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level+1);
+		break;
+	case 2:
+		description = "增加炸弹伤害";
+		this->price = 200;
+		this->priceIncreaseRate = 1.5;
+		this->level = Reg.readInt("up_2", 0);
+		this->maxLevel = 9999;
+		this->baseValue = 51;
+		this->deltaRate = 1.1;
+		this->deltaNum = 0;
+		this->priceIncreaseRate = 1.5;
+		this->price = this->price * pow(this->priceIncreaseRate, this->level);
+		this->currentValue = this->baseValue * pow(this->deltaRate, this->level);
+		this->nextValue = this->baseValue * pow(this->deltaRate, this->level+1);
+		break;
+	case 3:
+		description = "增加炸弹恢复速度";
+		this->price = 500;
+		this->priceIncreaseRate = 1.5;
+		this->level = Reg.readInt("up_3", 0);
+		this->maxLevel = 3;
+		this->baseValue = 4;
+		this->deltaRate = 1;
+		this->deltaNum = 1;
+		this->priceIncreaseRate = 1.5;
+		this->price = this->price * pow(this->priceIncreaseRate, this->level);
+		this->currentValue = this->baseValue - this->deltaNum * this->level;
+		this->nextValue =this->baseValue- (this->level+1);
+		break;
+	case 4:
+		this->description = "增加最大HP";
+		this->price = 500;
+		this->priceIncreaseRate = 1.5;
+		this->level = Reg.readInt("up_4", 0);
+		this->maxLevel = 5;
+		this->baseValue = 5;
+		this->deltaNum = 1;
+		this->price = this->price * pow(this->priceIncreaseRate, this->level);
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level+1);
+		break;
+	case 5:
+		this->description = "增加移动速度";
+		this->price = 1000;
+		this->priceIncreaseRate = 1.5;
+		this->level = Reg.readInt("up_5", 0);
+		this->maxLevel = 5;
+		this->baseValue = 5;
+		this->deltaNum = 1;
+		this->price = this->price * pow(this->priceIncreaseRate, this->level);
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level+1);
+		break;
+	}
+	IMAGE normalImg;
+	IMAGE hoverImg;
+	IMAGE activeImg;
+	IMAGE maxlevelImg;
+	IMAGE unafordableImg;
+	loadimage(&normalImg, _T("PNG"), MAKEINTRESOURCE(RES_GOODS_BTN_START_ID+id-1), width, height);
+	loadimage(&hoverImg, _T("PNG"), MAKEINTRESOURCE(RES_GOODS_BTN_HOVER_START_ID + id - 1), width, height);
+	loadimage(&activeImg, _T("PNG"), MAKEINTRESOURCE(RES_GOODS_BTN_ACTIVE_START_ID + id - 1), width, height);
+	loadimage(&maxlevelImg, _T("PNG"), MAKEINTRESOURCE(RES_GOODS_BTN_MAXLEVEL_START_ID + id - 1), width, height);
+	loadimage(&unafordableImg, _T("PNG"), MAKEINTRESOURCE(RES_GOODS_BTN_UNAFORDABLE_START_ID + id - 1), width, height);
+	this->img = normalImg;
+	this->hoverImg = hoverImg;
+	this->activeImg = activeImg;
+	this->maxLevelImg = maxlevelImg;
+	this->unaffordableImg = unafordableImg;
+	update();
+	playerStateUpdate();
+};
+
+void GoodsBtn::draw() {
+	if (this->level >= this->maxLevel) {
+		putimageAlpha(x, y, &maxLevelImg);
+		return;
+	}
+	else if (isUnaffordable()) {//资金不足
+		putimageAlpha(x, y, &unaffordableImg);
+		setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
+		COLORREF fontbk = RGB(255, 255, 255);
+		TCHAR text[128];
+		TCHAR text2[128];
+		TCHAR text3[128];
+		_stprintf_s(text, _T("当前等级：LV%d"), this->level);
+		outtextxy(x + 10, y + 10, text);
+		_stprintf_s(text2, _T("升级花费：%d"), this->price);
+		outtextxy(x + 10, y + BTN_GOODS_HEIGHT - 50, text2);
+		_stprintf_s(text3, _T("当前值：%d  -->%d"), this->currentValue, this->nextValue);
+		outtextxy(x + 10, y + BTN_GOODS_HEIGHT - 28, text3);
+		return;
+	}
+	else {
+		if (isActive) {
+			putimageAlpha(x, y, &activeImg);
+		}
+		else if (isHover) {
+			putimageAlpha(x, y, &hoverImg);
+		}
+		else {
+			putimageAlpha(x, y, &img);
+		}
+		//输出文字
+		setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
+		COLORREF fontbk = RGB(255, 255, 255);
+		TCHAR text[128];
+		TCHAR text2[128];
+		TCHAR text3[128];
+		settextcolor(fontbk);
+		settextstyle(22, 11, _T("宋体"));
+		_stprintf_s(text, _T("当前等级：LV%d"), this->level);
+		outtextxy(x+10, y+10, text);
+		_stprintf_s(text2, _T("升级花费：%d"), this->price);
+		outtextxy(x+10, y + BTN_GOODS_HEIGHT - 50, text2);
+		_stprintf_s(text3, _T("当前值：%d  -->%d"), this->currentValue, this->nextValue);
+		outtextxy(x+10, y + BTN_GOODS_HEIGHT - 28, text3);
+	}
+}
+
+void GoodsBtn::buy() {
+	if (isUnaffordable() || level >= maxLevel) { return; }
+	player.playerPersistState.coinNum -= price;
+	level++;
+	Reg.setInt("up_" + to_string(id), level);
+	Reg.setInt("coinNum", player.playerPersistState.coinNum);
+	update();//还需要处理玩家属性的同步
+	playerStateUpdate();
+}
+
+void GoodsBtn::playerStateUpdate() {
+	player.playerState.BoomMaxNum = player.playerPersistState.BoomMaxNum;
+	player.playerState.HP = player.playerPersistState.maxHP;
+	player.playerState.BoomRecoverSpeed = player.playerPersistState.BoomRecoverSpeed;
+	player.playerState.BoomNum = player.playerState.BoomMaxNum;
+	player.playerState.maxHP = player.playerPersistState.maxHP;
+	player.playerState.speed = player.playerPersistState.speed;
+
+}
+
+
+void GoodsBtn::update() {
+	switch (id) {
+	case 1:
+		player.playerPersistState.BoomMaxNum = baseValue + deltaNum * level;
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level + 1);
+		this->price = 200 * pow(this->priceIncreaseRate, this->level);
+		player.playerState.BoomMaxNum = player.playerPersistState.BoomMaxNum;
+		break;
+	case 2:
+		player.playerPersistState.putBoomDamage = baseValue * pow(deltaRate, level);
+		this->currentValue = this->baseValue * pow(this->deltaRate, this->level);
+		this->nextValue = this->baseValue * pow(this->deltaRate, this->level + 1);
+		this->price = 500 * pow(this->priceIncreaseRate, this->level);
+		break;
+	case 3:
+		player.playerPersistState.BoomRecoverSpeed = baseValue - deltaNum * level;
+		this->currentValue = this->baseValue - this->deltaNum * this->level;
+		this->nextValue = this->baseValue - this->deltaNum * (this->level + 1);
+		this->price = 1000 * pow(this->priceIncreaseRate, this->level);
+		break;
+	case 4:
+		player.playerPersistState.maxHP = baseValue + deltaNum * level;
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level + 1);
+		this->price = 2000 * pow(this->priceIncreaseRate, this->level);
+		break;
+	case 5:
+		player.playerPersistState.speed = baseValue + deltaNum * level;
+		this->currentValue = this->baseValue + this->deltaNum * this->level;
+		this->nextValue = this->baseValue + this->deltaNum * (this->level + 1);
+		this->price = 5000 * pow(this->priceIncreaseRate, this->level);
+		break;
+	}
+}
+

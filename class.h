@@ -224,7 +224,7 @@ private:
 class Game {
 public:
 	enum gameState {
-		menu=1, shop,selectLevel ,playing, gameWin,gameLose
+		menu=1, shop,selectLevel ,playing, gameWin,gameLose,more
 	};
 	gameState state = menu;
 	int currentLevel = 1;
@@ -287,11 +287,13 @@ public:
 	int y;
 	int value;
 	Animation* animation;
+	IMAGE staticImg;
 	IMAGE shadow;
 	bool isCollected = false;
 public:
-	Coin(int x, int y, int value, Animation* animation);
-	void draw(int time);
-	void move(int time);
+	Coin(int x, int y, Animation* animation,int hp);
+	Coin(int x, int y, int hp);
+	void draw();
+	void move();
 
 };

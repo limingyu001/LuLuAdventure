@@ -95,6 +95,17 @@ extern const int RES_BTN_UP_HOVER_ID;
 extern const int RES_BTN_UP_ACTIVE_ID;
 extern const int RES_ENEMY_DIED_RIGHT_START_ID;
 extern const int RES_ENEMY_DIED_LEFT_START_ID;
+extern const int RES_COIN_IMG_ID;
+extern const int COIN_IMG_WIDTH;
+extern const int COIN_IMG_HEIGHT;
+extern const int COIN_ICO_SHOW_X;
+extern const int COIN_ICO_SHOW_Y;
+extern const int RES_SHOP_BK_IMG_ID;
+extern const int RES_BTN_MORE_IMG_ID;
+extern const int RES_BTN_MORE_HOVER_IMG_ID;
+extern const int RES_BTN_MORE_ACTIVE_IMG_ID;
+extern const int RES_COIN_BAR_IMG_ID;
+extern const int RES_MOREBK_IMG_ID;
 
 enum bulletType {
     normal, rotated, boom

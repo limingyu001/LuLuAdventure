@@ -83,7 +83,7 @@ void Animation::spplay(int x, int y, int dtime, specialTable* sp) {
 			break;
 		}
 	}
-	if(sp->tickTable[i]>0){//绘制特殊图像
+	if(sp->tickTable[i]>0&&i<sp->num){//绘制特殊图像
 		sp->tickTable[i]--;
 		IMAGE white;
 		int width = atlas->frames[animation_index]->getwidth();
@@ -669,16 +669,19 @@ void GoodsBtn::draw() {
 	else if (isUnaffordable()) {//资金不足
 		putimageAlpha(x, y, &unaffordableImg);
 		setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
-		COLORREF fontbk = RGB(255, 255, 255);
+		COLORREF fontbk = RGB(77, 46, 26);
+		settextcolor(fontbk);
 		TCHAR text[128];
 		TCHAR text2[128];
 		TCHAR text3[128];
+		settextstyle(30, 0, _T("宋体"));
 		_stprintf_s(text, _T("当前等级：LV%d"), this->level);
-		outtextxy(x + 10, y + 10, text);
+		outtextxy(x + 30, y + 20, text);
+		settextstyle(24, 0, _T("宋体"));
 		_stprintf_s(text2, _T("升级花费：%d"), this->price);
-		outtextxy(x + 10, y + BTN_GOODS_HEIGHT - 50, text2);
+		outtextxy(x + 30, y + BTN_GOODS_HEIGHT - 95, text2);
 		_stprintf_s(text3, _T("当前值：%d  -->%d"), this->currentValue, this->nextValue);
-		outtextxy(x + 10, y + BTN_GOODS_HEIGHT - 28, text3);
+		outtextxy(x + 30, y + BTN_GOODS_HEIGHT - 70, text3);
 		return;
 	}
 	else {
@@ -693,18 +696,19 @@ void GoodsBtn::draw() {
 		}
 		//输出文字
 		setbkmode(TRANSPARENT); // 关键代码：设置背景模式为透明
-		COLORREF fontbk = RGB(255, 255, 255);
+		COLORREF fontbk = RGB(77, 46, 26);
 		TCHAR text[128];
 		TCHAR text2[128];
 		TCHAR text3[128];
 		settextcolor(fontbk);
-		settextstyle(22, 11, _T("宋体"));
+		settextstyle(30, 0, _T("宋体"));
 		_stprintf_s(text, _T("当前等级：LV%d"), this->level);
-		outtextxy(x+10, y+10, text);
+		outtextxy(x+30, y+20, text);
+		settextstyle(24, 0, _T("宋体"));
 		_stprintf_s(text2, _T("升级花费：%d"), this->price);
-		outtextxy(x+10, y + BTN_GOODS_HEIGHT - 50, text2);
+		outtextxy(x+30, y + BTN_GOODS_HEIGHT - 95, text2);
 		_stprintf_s(text3, _T("当前值：%d  -->%d"), this->currentValue, this->nextValue);
-		outtextxy(x+10, y + BTN_GOODS_HEIGHT - 28, text3);
+		outtextxy(x+30, y + BTN_GOODS_HEIGHT - 70, text3);
 	}
 }
 
@@ -765,3 +769,18 @@ void GoodsBtn::update() {
 	}
 }
 
+//金币静态图片的构造函数，以后可能会增加动画效果
+Coin::Coin(int x, int y,int hp) {
+	IMAGE coinImg;
+	loadimage(&coinImg, _T("PNG"), MAKEINTRESOURCE(RES_COIN_IMG_ID), COIN_IMG_WIDTH, COIN_IMG_HEIGHT);
+	this->staticImg = coinImg;
+	this->x = x;
+	this->y = y;
+	//生成0.15-0.25的随机倍率
+	float rate = (rand() % 11 + 15) / 100.0f;
+	this->value = floor(hp * rate);
+}
+
+void Coin::draw() {
+	putimageAlpha(x-COIN_IMG_WIDTH/2, y-COIN_IMG_HEIGHT/2+PLAYER_IMG_HEIGHT / 3, &staticImg);
+}

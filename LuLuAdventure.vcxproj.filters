@@ -1288,6 +1288,27 @@
     <Image Include="img\enemyDiedLeft\ani_enemy_left_50.png">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="img\gui\coin.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\shopbk.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_more_normal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_more_hover.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\btn_more_active.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\coin_bar.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="img\gui\morePage.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="噜噜大冒险.rc">

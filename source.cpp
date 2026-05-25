@@ -54,12 +54,20 @@ levelInfor levelList[16] = {
 levelInfor{ 1, 50, 3, 2, true},
 levelInfor{ 2, 50, 5, 2, false },
 levelInfor{ 3, 100, 5, 2, false },
-levelInfor{ 4, 100, 7, 2, false },
-levelInfor{ 5, 150, 7, 2, false },
+levelInfor{ 4, 100, 7, 3, false },
+levelInfor{ 5, 150, 7, 3, false },
 levelInfor{ 6, 150, 10, 3, false },
 levelInfor{ 7, 150, 15, 3, false },
 levelInfor{ 8, 200, 10, 3, false },
 levelInfor{ 9, 250, 10, 3, false },
+levelInfor{ 10, 300, 10, 3, false },
+levelInfor{ 11, 500, 15, 4, false },
+levelInfor{ 12, 600, 10, 4, false },
+levelInfor{ 13, 700, 10, 5, false },
+levelInfor{ 14, 800, 15, 6, false },
+levelInfor{ 15, 900, 20, 6, false },
+levelInfor{ 16, 1000, 20, 6, false },
+
 };
 
 

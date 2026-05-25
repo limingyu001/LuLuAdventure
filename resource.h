@@ -418,12 +418,19 @@
 #define IDB_PNG413                      524
 #define IDB_PNG414                      525
 #define IDB_PNG415                      526
+#define IDB_PNG416                      527
+#define IDB_PNG417                      528
+#define IDB_PNG418                      529
+#define IDB_PNG419                      530
+#define IDB_PNG420                      531
+#define IDB_PNG421                      532
+#define IDB_PNG422                      533
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        527
+#define _APS_NEXT_RESOURCE_VALUE        534
 #define _APS_NEXT_COMMAND_VALUE         40003
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101

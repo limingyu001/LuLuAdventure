@@ -122,7 +122,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -352,9 +352,14 @@
     <Image Include="img\gui\btn_exit_active.png" />
     <Image Include="img\gui\btn_exit_default.png" />
     <Image Include="img\gui\btn_exit_hover.png" />
+    <Image Include="img\gui\btn_more_active.png" />
+    <Image Include="img\gui\btn_more_hover.png" />
+    <Image Include="img\gui\btn_more_normal.png" />
     <Image Include="img\gui\btn_start_active.png" />
     <Image Include="img\gui\btn_start_default.png" />
     <Image Include="img\gui\btn_start_hover.png" />
+    <Image Include="img\gui\coin.png" />
+    <Image Include="img\gui\coin_bar.png" />
     <Image Include="img\gui\endpage.png" />
     <Image Include="img\gui\goods\goods_active_1.png" />
     <Image Include="img\gui\goods\goods_active_2.png" />
@@ -435,6 +440,8 @@
     <Image Include="img\gui\levelbtn\up_hover.png" />
     <Image Include="img\gui\levelbtn\up_normal.png" />
     <Image Include="img\gui\menu_bk.png" />
+    <Image Include="img\gui\morePage.png" />
+    <Image Include="img\gui\shopbk.png" />
     <Image Include="img\gui\winBtn\btn_win_1.png" />
     <Image Include="img\gui\winBtn\btn_win_2.png" />
     <Image Include="img\gui\winBtn\btn_win_3.png" />
